@@ -121,10 +121,182 @@ const getAllRentalsFromDB = async () => {
   });
 };
 
+const confirmRentalIntoDB = async (
+  rentalId: string,
+  providerId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+
+      include: {
+        gear: true,
+      },
+    });
+
+  if (
+    rental.gear.providerId !== providerId
+  ) {
+    throw new Error(
+      "You are not owner of this gear"
+    );
+  }
+
+  if (
+    rental.status !== RentalStatus.PLACED
+  ) {
+    throw new Error(
+      "Only placed orders can be confirmed"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+
+    data: {
+      status: RentalStatus.CONFIRMED,
+    },
+  });
+};
+
+const pickupRentalIntoDB = async (
+  rentalId: string,
+  providerId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+
+      include: {
+        gear: true,
+      },
+    });
+
+  if (
+    rental.gear.providerId !== providerId
+  ) {
+    throw new Error(
+      "Unauthorized"
+    );
+  }
+
+  if (
+    rental.status !== RentalStatus.PAID
+  ) {
+    throw new Error(
+      "Rental must be paid first"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+
+    data: {
+      status: RentalStatus.PICKED_UP,
+    },
+  });
+};
+
+const returnRentalIntoDB = async (
+  rentalId: string,
+  providerId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+
+      include: {
+        gear: true,
+      },
+    });
+
+  if (
+    rental.gear.providerId !== providerId
+  ) {
+    throw new Error(
+      "Unauthorized"
+    );
+  }
+
+  if (
+    rental.status !== RentalStatus.PICKED_UP
+  ) {
+    throw new Error(
+      "Rental not picked up yet"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+
+    data: {
+      status: RentalStatus.RETURNED,
+    },
+  });
+};
+
+const cancelRentalIntoDB = async (
+  rentalId: string,
+  customerId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+    });
+
+  if (
+    rental.customerId !== customerId
+  ) {
+    throw new Error(
+      "Unauthorized"
+    );
+  }
+
+  if (
+    rental.status !== RentalStatus.PLACED
+  ) {
+    throw new Error(
+      "Only placed rental can be cancelled"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+
+    data: {
+      status: RentalStatus.CANCELLED,
+    },
+  });
+};
+
 export const rentalService = {
   createRentalIntoDB,
   getMyRentalsFromDB,
   getSingleRentalFromDB,
   getProviderRentalRequestsFromDB,
   getAllRentalsFromDB,
+  confirmRentalIntoDB,
+  pickupRentalIntoDB,
+  returnRentalIntoDB,
+  cancelRentalIntoDB,
 };

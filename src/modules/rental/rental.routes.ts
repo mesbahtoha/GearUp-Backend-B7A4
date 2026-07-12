@@ -42,4 +42,28 @@ router.get(
   rentalController.getSingleRental
 );
 
+router.patch(
+  "/:id/confirm",
+  auth(Role.PROVIDER),
+  rentalController.confirmRental
+);
+
+router.patch(
+  "/:id/pick-up",
+  auth(Role.PROVIDER),
+  rentalController.pickupRental
+);
+
+router.patch(
+  "/:id/return",
+  auth(Role.PROVIDER),
+  rentalController.returnRental
+);
+
+router.patch(
+  "/:id/cancel",
+  auth(Role.CUSTOMER),
+  rentalController.cancelRental
+);
+
 export const rentalRoutes = router;
