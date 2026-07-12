@@ -7,6 +7,7 @@ import { userRoutes } from "./modules/user/user.routes";
 import { globalErrorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./modules/category/category.routes";
 import { gearRoutes } from "./modules/gear/gear.routes";
+import { rentalRoutes } from "./modules/rental/rental.routes";
 
 const app: Application = express();
 
@@ -32,6 +33,7 @@ app.use(
 );
 
 app.use("/api/gears", gearRoutes);
+app.use("/api/rentals", rentalRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
