@@ -2,12 +2,11 @@ import cookieParser from "cookie-parser";
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import config from "./config";
-import { prisma } from "./lib/prisma";
-import httpStatus from "http-status-codes";
-import bcrypt from "bcryptjs";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { userRoutes } from "./modules/user/user.routes";
 import { globalErrorHandler } from "./middlewares/errorHandler";
+import { categoryRoutes } from "./modules/category/category.routes";
+import { gearRoutes } from "./modules/gear/gear.routes";
 
 const app: Application = express();
 
@@ -26,6 +25,13 @@ app.get("/", async (req: Request, res: Response) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use(
+  "/api/categories",
+  categoryRoutes
+);
+
+app.use("/api/gears", gearRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
