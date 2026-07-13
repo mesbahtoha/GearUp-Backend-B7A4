@@ -1,0 +1,862 @@
+{
+	"info": {
+		"_postman_id": "8fc079eb-c1be-4aa6-95fa-6193739cf6e7",
+		"name": "GearUp Backand Postman Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "53823647",
+		"_collection_link": "https://mesbahulalam017-5145562.postman.co/workspace/Mesbahul-Alam's-Workspace~1e7a4dfd-00c7-4b89-8906-334123b9990e/collection/53823647-8fc079eb-c1be-4aa6-95fa-6193739cf6e7?action=share&source=collection_link&creator=53823647"
+	},
+	"item": [
+		{
+			"name": "Public Gear APIs",
+			"item": [
+				{
+					"name": "GET All Gears",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gearup-backend-b7a4.onrender.com/api/gears",
+							"protocol": "https",
+							"host": [
+								"gearup-backend-b7a4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"gears"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Pagination)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Search)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?search=tent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "tent"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Price Filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?minPrice=10&maxPrice=50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "10"
+								},
+								{
+									"key": "maxPrice",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single Gear",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"gears",
+								"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Module",
+			"item": [
+				{
+					"name": "GET Dashboard Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Rentals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/rentals",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suspend User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users/776a2b95-8fe6-477d-bd87-0e4ddea46951/suspend",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"776a2b95-8fe6-477d-bd87-0e4ddea46951",
+								"suspend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users/776a2b95-8fe6-477d-bd87-0e4ddea46951/activate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"776a2b95-8fe6-477d-bd87-0e4ddea46951",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Gear",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/gears/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"gears",
+								"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register Provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Outdoor Hub\",\n  \"email\": \"provider.outdoor@gmail.com\",\n  \"password\": \"Provider@123\",\n  \"phone\": \"01811111111\",\n  \"role\": \"PROVIDER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gearup-backend-b7a4.onrender.com/api/users/register",
+					"protocol": "https",
+					"host": [
+						"gearup-backend-b7a4",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Rahim Uddin\",\n  \"email\": \"customer.rahim@gmail.com\",\n  \"password\": \"Customer@123\",\n  \"phone\": \"01911111111\",\n  \"role\": \"CUSTOMER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gearup-backend-b7a4.onrender.com/api/users/register",
+					"protocol": "https",
+					"host": [
+						"gearup-backend-b7a4",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"provider.outdoor@gmail.com\",\n  \"password\": \"Provider@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgzOTYwOTA3LCJleHAiOjE3ODQwNDczMDd9.vNnWPoPo6JcZSv4k7f0WWg7r7wfbV_KHze71C2gtf1A"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Camping\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Gear",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjE0ODgsImV4cCI6MTc4NDA0Nzg4OH0.P8cCYYDH90gvXhnuoH_ze3tKxtCbAwyP9jpX_k0VHXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Mountain Tent\",\n  \"brand\": \"NatureHike\",\n  \"description\": \"4 Person Waterproof Tent\",\n  \"pricePerDay\": 25,\n  \"stock\": 10,\n  \"isAvailable\": true,\n  \"categoryId\": \"1411e910-b50d-4941-b275-61c34ec72d98\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/gears",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"gears"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider My Gears",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5Mzk2MjQsImV4cCI6MTc4NDAyNjAyNH0.HG9-n6st7rLMKxCQ7LJsFNinfZ5ijmm-cFyxnTjVH00",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/gears/my-gears",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"gears",
+						"my-gears"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"customer.rahim@gmail.com\",\n  \"password\": \"Customer@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gearup-backend-b7a4.onrender.com/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"gearup-backend-b7a4",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rental",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTYyMjI3LCJleHAiOjE3ODQwNDg2Mjd9._Iq7qwCUTo4VUUwcvN3z1EuGN2zQg5AVl2KoSNOs1Ls",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"quantity\": 2,\n  \"startDate\": \"2026-07-20\",\n  \"endDate\": \"2026-07-25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer My Rentals",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkOTk1OWZkLTJlOTQtNDllMi05MWQxLTRhNzYzN2VhZjVjNyIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTQxMzI2LCJleHAiOjE3ODQwMjc3MjZ9.J3LoVr8zQy127P0bJvXMgkogZao3bTz6kIUP-75qx-g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/my-rentals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rentals",
+						"my-rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider Orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjIzNTcsImV4cCI6MTc4NDA0ODc1N30.aNGVr24bUiVc4TLYWxseencTszcVNIniceQbPzHV73I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/provider-orders",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"provider-orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Rental",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjIzNTcsImV4cCI6MTc4NDA0ODc1N30.aNGVr24bUiVc4TLYWxseencTszcVNIniceQbPzHV73I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/1ad610b9-995b-4006-a014-f5fac9494e7d/confirm",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"1ad610b9-995b-4006-a014-f5fac9494e7d",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment Intent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTYzNzg2LCJleHAiOjE3ODQwNTAxODZ9.355gu1JINBB-eKUfQxf_icJphcdeiAh3nnoR_ZF0OQ4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/payments/checkout/1ad610b9-995b-4006-a014-f5fac9494e7d",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"payments",
+						"checkout",
+						"1ad610b9-995b-4006-a014-f5fac9494e7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pick Up",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NDI5MDEsImV4cCI6MTc4NDAyOTMwMX0.UFPDaOd_pscP6JUAsSc4IDzIQAMWzNLG-tDU72b5x2M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/ae4361cb-2229-412b-921e-62b4743855d6/pickup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rentals",
+						"ae4361cb-2229-412b-921e-62b4743855d6",
+						"pickup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NDI5MDEsImV4cCI6MTc4NDAyOTMwMX0.UFPDaOd_pscP6JUAsSc4IDzIQAMWzNLG-tDU72b5x2M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/ae4361cb-2229-412b-921e-62b4743855d6/return",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rentals",
+						"ae4361cb-2229-412b-921e-62b4743855d6",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkOTk1OWZkLTJlOTQtNDllMi05MWQxLTRhNzYzN2VhZjVjNyIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTQzMTU2LCJleHAiOjE3ODQwMjk1NTZ9.e4OyCfJ2_MSMnSxUzlrXsNI5gk-3NZIcG9UWBrDG1oM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"gearId\": \"aba628be-2dd6-43e0-81e1-24e22ce3d5cb\",\n  \"rating\": 5,\n  \"comment\": \"Excellent quality and condition.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews/my-reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews",
+						"my-reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gear Reviews",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews/gear/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews",
+						"gear",
+						"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
