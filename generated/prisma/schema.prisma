@@ -1,0 +1,168 @@
+model Category {
+  id String @id @default(uuid())
+
+  name        String  @unique
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  gearItems GearItem[]
+}
+
+enum Role {
+  CUSTOMER
+  PROVIDER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum RentalStatus {
+  PLACED
+  CONFIRMED
+  PAID
+  PICKED_UP
+  RETURNED
+  CANCELLED
+}
+
+enum PaymentProvider {
+  STRIPE
+  SSLCOMMERZ
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model GearItem {
+  id String @id @default(uuid())
+
+  name        String
+  description String
+
+  brand String
+
+  image String?
+
+  pricePerDay Float
+
+  stock Int
+
+  isAvailable Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  providerId String
+  provider   User   @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  rentals RentalOrder[]
+
+  reviews Review[]
+}
+
+model Payment {
+  id String @id @default(uuid())
+
+  amount Float
+
+  transactionId String? @unique
+
+  provider PaymentProvider
+
+  status PaymentStatus @default(PENDING)
+
+  paidAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rentalOrderId String @unique
+
+  rentalOrder RentalOrder @relation(fields: [rentalOrderId], references: [id], onDelete: Cascade)
+}
+
+model RentalOrder {
+  id String @id @default(uuid())
+
+  quantity Int
+
+  startDate DateTime
+
+  endDate DateTime
+
+  totalPrice Float
+
+  status RentalStatus @default(PLACED)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customerId String
+  customer   User   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  gearId String
+  gear   GearItem @relation(fields: [gearId], references: [id])
+
+  payment Payment?
+}
+
+model Review {
+  id String @id @default(uuid())
+
+  rating Int
+
+  comment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customerId String
+  customer   User   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  gearId String
+  gear   GearItem @relation(fields: [gearId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, gearId])
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id String @id @default(uuid())
+
+  name     String
+  email    String @unique
+  password String
+
+  phone String?
+
+  role   Role       @default(CUSTOMER)
+  status UserStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  gearItems GearItem[]
+
+  rentals RentalOrder[]
+
+  reviews Review[]
+}
