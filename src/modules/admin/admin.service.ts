@@ -349,13 +349,16 @@ const getDashboardStatsFromDB =
 const deleteGearFromDB = async (
   gearId: string
 ) => {
-  await prisma.gearItem.delete({
+
+  return prisma.gearItem.update({
     where: {
       id: gearId,
     },
-  });
 
-  return null;
+    data: {
+      isAvailable: false,
+    },
+  });
 };
 
 const changeUserRoleIntoDB = async (
