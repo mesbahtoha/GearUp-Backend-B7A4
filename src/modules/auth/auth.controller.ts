@@ -44,6 +44,71 @@ const loginUser = catchAsync(
   }
 );
 
+const refreshToken = catchAsync(
+  async (req, res) => {
+
+    const token =
+      req.cookies.refreshToken;
+
+    const result =
+      await authService.refreshToken(
+        token
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message:
+        "Access token generated successfully",
+      data: result,
+    });
+  }
+);
+
+const logout = catchAsync(
+  async (req, res) => {
+
+    res.clearCookie(
+      "accessToken"
+    );
+
+    res.clearCookie(
+      "refreshToken"
+    );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message:
+        "Logout successful",
+      data: null,
+    });
+  }
+);
+
+const changePassword =
+  catchAsync(
+    async (req, res) => {
+
+      await authService.changePassword(
+        req.user!.id,
+        req.body
+      );
+
+      sendResponse(res, {
+        success: true,
+        statusCode:
+          httpStatus.OK,
+        message:
+          "Password changed successfully",
+        data: null,
+      });
+    }
+  );
+
 export const authController = {
   loginUser,
+  refreshToken,
+  logout,
+  changePassword
 };

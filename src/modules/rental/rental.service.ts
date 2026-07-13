@@ -54,22 +54,61 @@ const createRentalIntoDB = async (
 };
 
 const getMyRentalsFromDB = async (
-  customerId: string
+  customerId: string,
+  query: any
 ) => {
-  return prisma.rentalOrder.findMany({
-    where: {
-      customerId,
-    },
 
-    include: {
-      gear: true,
-      payment: true,
-    },
+  const page =
+    Number(query.page) || 1;
 
-    orderBy: {
-      createdAt: "desc",
+  const limit =
+    Number(query.limit) || 10;
+
+  const skip =
+    (page - 1) * limit;
+
+  const where: any = {
+    customerId,
+  };
+
+  if (query.status) {
+    where.status =
+      query.status;
+  }
+
+  const rentals =
+    await prisma.rentalOrder.findMany({
+      where,
+
+      include: {
+        gear: true,
+        payment: true,
+      },
+
+      skip,
+      take: limit,
+
+      orderBy: {
+        [query.sortBy || "createdAt"]:
+          query.sortOrder || "desc",
+      },
+    });
+
+  const total =
+    await prisma.rentalOrder.count({
+      where,
+    });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage:
+        Math.ceil(total / limit),
     },
-  });
+    data: rentals,
+  };
 };
 
 const getSingleRentalFromDB = async (
@@ -107,18 +146,61 @@ const getProviderRentalRequestsFromDB =
     });
   };
 
-const getAllRentalsFromDB = async () => {
-  return prisma.rentalOrder.findMany({
-    include: {
-      customer: true,
-      gear: true,
-      payment: true,
+const getAllRentalsFromDB = async (
+  query: any
+) => {
+
+  const page =
+    Number(query.page) || 1;
+
+  const limit =
+    Number(query.limit) || 10;
+
+  const skip =
+    (page - 1) * limit;
+
+  const where: any = {};
+
+  if (query.status) {
+    where.status =
+      query.status;
+  }
+
+  const rentals =
+    await prisma.rentalOrder.findMany({
+      where,
+
+      include: {
+        customer: true,
+        gear: true,
+        payment: true,
+      },
+
+      skip,
+      take: limit,
+
+      orderBy: {
+        [query.sortBy || "createdAt"]:
+          query.sortOrder || "desc",
+      },
+    });
+
+  const total =
+    await prisma.rentalOrder.count({
+      where,
+    });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage:
+        Math.ceil(total / limit),
     },
 
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+    data: rentals,
+  };
 };
 
 const confirmRentalIntoDB = async (
@@ -290,26 +372,70 @@ const cancelRentalIntoDB = async (
 };
 
 const getProviderOrdersFromDB = async (
-  providerId: string
+  providerId: string,
+  query: any
 ) => {
-  const orders =
+
+  const page =
+    Number(query.page) || 1;
+
+  const limit =
+    Number(query.limit) || 10;
+
+  const skip =
+    (page - 1) * limit;
+
+  const where: any = {
+    gear: {
+      providerId,
+    },
+  };
+
+  if (query.status) {
+    where.status =
+      query.status;
+  }
+
+  const rentals =
     await prisma.rentalOrder.findMany({
-      where: {
-        gear: {
-          providerId,
-        },
-      },
+      where,
+
       include: {
-        customer: true,
+        customer: {
+          omit: {
+            password: true,
+          },
+        },
+
         gear: true,
         payment: true,
       },
+
+      skip,
+      take: limit,
+
       orderBy: {
-        createdAt: "desc",
+        [query.sortBy || "createdAt"]:
+          query.sortOrder || "desc",
       },
     });
 
-  return orders;
+  const total =
+    await prisma.rentalOrder.count({
+      where,
+    });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage:
+        Math.ceil(total / limit),
+    },
+
+    data: rentals,
+  };
 };
 
 const confirmOrderIntoDB = async (

@@ -24,20 +24,23 @@ const createGear = catchAsync(
   }
 );
 
-const getAllGears = catchAsync(
-  async (req: Request, res: Response) => {
+const getAllGears =
+  catchAsync(async (req, res) => {
+
     const result =
-      await gearService.getAllGearsFromDB();
+      await gearService.getAllGearsFromDB(
+        req.query
+      );
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
       message:
         "Gears retrieved successfully",
-      data: result,
+      data: result.data,
+      meta: result.meta,
     });
-  }
-);
+  });
 
 const getSingleGear = catchAsync(
   async (req: Request, res: Response) => {

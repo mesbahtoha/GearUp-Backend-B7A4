@@ -56,4 +56,10 @@ router.delete(
   adminController.deleteGear
 );
 
+router.patch(
+  "/users/:id/role",
+  auth(Role.ADMIN),
+  adminController.changeUserRole
+);
+
 export const adminRoutes = router;

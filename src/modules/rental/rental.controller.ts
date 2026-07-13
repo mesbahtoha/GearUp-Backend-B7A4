@@ -6,58 +6,50 @@ import { sendResponse } from "../../utils/sendResponse";
 
 import { rentalService } from "./rental.service";
 
-const createRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental = await rentalService.createRentalIntoDB(
-      req.user!.id,
-      req.body
-    );
+const createRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.createRentalIntoDB(req.user!.id, req.body);
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.CREATED,
-      message: "Rental order placed successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "Rental order placed successfully",
+    data: rental,
+  });
+});
 
-const getMyRentals = catchAsync(
-  async (req: Request, res: Response) => {
-    const rentals = await rentalService.getMyRentalsFromDB(
-      req.user!.id
-    );
+const getMyRentals = catchAsync(async (req: Request, res: Response) => {
+  const result = await rentalService.getMyRentalsFromDB(
+    req.user!.id,
+    req.query,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "My rentals retrieved successfully",
-      data: rentals,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "My rentals retrieved successfully",
+    data: result.data,
+    meta: result.meta,
+  });
+});
 
-const getSingleRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental = await rentalService.getSingleRentalFromDB(
-      req.params.id as string
-    );
+const getSingleRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.getSingleRentalFromDB(
+    req.params.id as string,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "Rental retrieved successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rental retrieved successfully",
+    data: rental,
+  });
+});
 
 const getProviderRentalRequests = catchAsync(
   async (req: Request, res: Response) => {
-    const rentals =
-      await rentalService.getProviderRentalRequestsFromDB(
-        req.user!.id
-      );
+    const rentals = await rentalService.getProviderRentalRequestsFromDB(
+      req.user!.id,
+    );
 
     sendResponse(res, {
       success: true,
@@ -65,180 +57,141 @@ const getProviderRentalRequests = catchAsync(
       message: "Rental requests retrieved successfully",
       data: rentals,
     });
-  }
+  },
 );
 
-const getAllRentals = catchAsync(
-  async (req: Request, res: Response) => {
-    const rentals =
-      await rentalService.getAllRentalsFromDB();
+const getAllRentals = catchAsync(async (req: Request, res: Response) => {
+  const result = await rentalService.getAllRentalsFromDB(req.query);
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "All rentals retrieved successfully",
-      data: rentals,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rentals retrieved successfully",
+    data: result.data,
+    meta: result.meta,
+  });
+});
 
-const confirmRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental =
-      await rentalService.confirmRentalIntoDB(
-        req.params.id as string,
-        req.user!.id
-      );
+const confirmRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.confirmRentalIntoDB(
+    req.params.id as string,
+    req.user!.id,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "Rental confirmed successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rental confirmed successfully",
+    data: rental,
+  });
+});
 
-const pickupRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental =
-      await rentalService.pickupRentalIntoDB(
-        req.params.id as string,
-        req.user!.id
-      );
+const pickupRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.pickupRentalIntoDB(
+    req.params.id as string,
+    req.user!.id,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "Rental picked up successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rental picked up successfully",
+    data: rental,
+  });
+});
 
-const returnRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental =
-      await rentalService.returnRentalIntoDB(
-        req.params.id as string,
-        req.user!.id
-      );
+const returnRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.returnRentalIntoDB(
+    req.params.id as string,
+    req.user!.id,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "Rental returned successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rental returned successfully",
+    data: rental,
+  });
+});
 
-const cancelRental = catchAsync(
-  async (req: Request, res: Response) => {
-    const rental =
-      await rentalService.cancelRentalIntoDB(
-        req.params.id as string,
-        req.user!.id
-      );
+const cancelRental = catchAsync(async (req: Request, res: Response) => {
+  const rental = await rentalService.cancelRentalIntoDB(
+    req.params.id as string,
+    req.user!.id,
+  );
 
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: "Rental cancelled successfully",
-      data: rental,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rental cancelled successfully",
+    data: rental,
+  });
+});
 
-const getProviderOrders = catchAsync(
-  async (req, res) => {
+const getProviderOrders = catchAsync(async (req, res) => {
+  const result = await rentalService.getProviderOrdersFromDB(
+    req.user!.id,
+    req.query,
+  );
 
-    const result =
-      await rentalService.getProviderOrdersFromDB(
-        req.user!.id
-      );
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Provider rentals retrieved successfully",
+    data: result.data,
+    meta: result.meta,
+  });
+});
 
-    sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message:
-        "Provider orders retrieved successfully",
-      data: result,
-    });
-  }
-);
+const confirmOrder = catchAsync(async (req, res) => {
+  const result = await rentalService.confirmOrderIntoDB(
+    req.params.id as string,
+  );
 
-const confirmOrder = catchAsync(
-  async (req, res) => {
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Order confirmed successfully",
+    data: result,
+  });
+});
 
-    const result =
-      await rentalService.confirmOrderIntoDB(
-        req.params.id as string
-      );
+const cancelOrder = catchAsync(async (req, res) => {
+  const result = await rentalService.cancelOrderIntoDB(req.params.id as string);
 
-    sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message:
-        "Order confirmed successfully",
-      data: result,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Order cancelled successfully",
+    data: result,
+  });
+});
 
-const cancelOrder = catchAsync(
-  async (req, res) => {
+const markPickedUp = catchAsync(async (req, res) => {
+  const result = await rentalService.markPickedUpIntoDB(
+    req.params.id as string,
+  );
 
-    const result =
-      await rentalService.cancelOrderIntoDB(
-        req.params.id as string
-      );
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Gear handed over successfully",
+    data: result,
+  });
+});
 
-    sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message:
-        "Order cancelled successfully",
-      data: result,
-    });
-  }
-);
+const markReturned = catchAsync(async (req, res) => {
+  const result = await rentalService.markReturnedIntoDB(
+    req.params.id as string,
+  );
 
-const markPickedUp = catchAsync(
-  async (req, res) => {
-
-    const result =
-      await rentalService.markPickedUpIntoDB(
-        req.params.id as string
-      );
-
-    sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message:
-        "Gear handed over successfully",
-      data: result,
-    });
-  }
-);
-
-const markReturned = catchAsync(
-  async (req, res) => {
-
-    const result =
-      await rentalService.markReturnedIntoDB(
-        req.params.id as string
-      );
-
-    sendResponse(res, {
-      success: true,
-      statusCode: 200,
-      message:
-        "Gear returned successfully",
-      data: result,
-    });
-  }
-);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Gear returned successfully",
+    data: result,
+  });
+});
 
 export const rentalController = {
   createRental,

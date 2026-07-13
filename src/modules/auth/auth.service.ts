@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import { SignOptions } from "jsonwebtoken";
+import { JwtPayload, SignOptions } from "jsonwebtoken";
 import { prisma } from "../../lib/prisma";
 import config from "../../config";
 import { jwtUtils } from "../../utils/jwt";
-import { ILoginUser } from "./auth.interface";
+import { IChangePassword, ILoginUser } from "./auth.interface";
 
 const loginUser = async (payload: ILoginUser) => {
   const { email, password } = payload;
@@ -57,6 +57,104 @@ const loginUser = async (payload: ILoginUser) => {
   };
 };
 
+const refreshToken = async (
+  token: string
+) => {
+
+  if (!token) {
+    throw new Error(
+      "Refresh token is required"
+    );
+  }
+
+  const verifiedToken =
+    jwtUtils.verifyToken(
+      token,
+      config.jwt_refresh_secret
+    );
+
+  if (!verifiedToken.success) {
+    throw new Error(
+      "Invalid refresh token"
+    );
+  }
+
+  const { id } =
+    verifiedToken.data as JwtPayload;
+
+  const user =
+    await prisma.user.findUniqueOrThrow({
+      where: {
+        id,
+      },
+    });
+
+  const accessToken =
+    jwtUtils.createToken(
+      {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      config.jwt_acess_secret,
+      config.jwt_access_expires_in as SignOptions
+    );
+
+  return {
+    accessToken,
+  };
+};
+
+const changePassword =
+  async (
+    userId: string,
+    payload: IChangePassword
+  ) => {
+
+    const user =
+      await prisma.user.findUniqueOrThrow({
+        where: {
+          id: userId,
+        },
+      });
+
+    const isMatched =
+      await bcrypt.compare(
+        payload.oldPassword,
+        user.password
+      );
+
+    if (!isMatched) {
+      throw new Error(
+        "Old password is incorrect"
+      );
+    }
+
+    const hashedPassword =
+      await bcrypt.hash(
+        payload.newPassword,
+        Number(
+          config.bcrypt_salt_rounds
+        )
+      );
+
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+
+      data: {
+        password:
+          hashedPassword,
+      },
+    });
+
+    return null;
+  };
+
 export const authService = {
   loginUser,
+  refreshToken,
+  changePassword,
 };

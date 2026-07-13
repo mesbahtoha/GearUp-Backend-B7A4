@@ -1,6 +1,7 @@
 import { prisma } from "../../lib/prisma";
 import {
   ICreateGear,
+  IGetAllGearQuery,
   IUpdateGear,
 } from "./gear.interface";
 
@@ -36,26 +37,146 @@ const createGearIntoDB = async (
   return gear;
 };
 
-const getAllGearsFromDB = async () => {
+// const getAllGearsFromDB = async () => {
+//   const gears =
+//     await prisma.gearItem.findMany({
+//       include: {
+//         category: true,
+//         provider: {
+//           select: {
+//             id: true,
+//             name: true,
+//             email: true,
+//           },
+//         },
+//       },
+
+//       orderBy: {
+//         createdAt: "desc",
+//       },
+//     });
+
+//   return gears;
+// };
+
+const getAllGearsFromDB = async (
+  query: IGetAllGearQuery
+) => {
+
+  const page =
+    Number(query.page) || 1;
+
+  const limit =
+    Number(query.limit) || 10;
+
+  const skip =
+    (page - 1) * limit;
+
+  const search =
+    query.search || "";
+
+  const categoryId =
+    query.categoryId;
+
+  const minPrice =
+    query.minPrice
+      ? Number(query.minPrice)
+      : undefined;
+
+  const maxPrice =
+    query.maxPrice
+      ? Number(query.maxPrice)
+      : undefined;
+
+  const where: any = {};
+
+  // Search
+  if (search) {
+    where.OR = [
+      {
+        name: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+      {
+        brand: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+      {
+        description: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+    ];
+  }
+
+  // Category Filter
+  if (categoryId) {
+    where.categoryId = categoryId;
+  }
+
+  // Price Filter
+  if (
+    minPrice !== undefined ||
+    maxPrice !== undefined
+  ) {
+    where.pricePerDay = {};
+
+    if (minPrice !== undefined) {
+      where.pricePerDay.gte =
+        minPrice;
+    }
+
+    if (maxPrice !== undefined) {
+      where.pricePerDay.lte =
+        maxPrice;
+    }
+  }
+
   const gears =
     await prisma.gearItem.findMany({
+      where,
+
       include: {
         category: true,
         provider: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
+          omit: {
+            password: true,
           },
         },
       },
 
+      skip,
+      take: limit,
+
       orderBy: {
-        createdAt: "desc",
+        [query.sortBy ||
+          "createdAt"]:
+          query.sortOrder ||
+          "desc",
       },
     });
 
-  return gears;
+  const total =
+    await prisma.gearItem.count({
+      where,
+    });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage:
+        Math.ceil(total / limit),
+    },
+
+    data: gears,
+  };
 };
 
 const getSingleGearFromDB = async (

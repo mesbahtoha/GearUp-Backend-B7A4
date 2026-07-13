@@ -18,3 +18,14 @@ export interface IUpdateGear {
   isAvailable?: boolean;
   categoryId?: string;
 }
+
+export interface IGetAllGearQuery {
+  page?: string;
+  limit?: string;
+  search?: string;
+  categoryId?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}

@@ -21,6 +21,7 @@ import paymentWebhookRoute from "./modules/payment/payment.webhook.route";
 import { globalErrorHandler } from "./middlewares/errorHandler";
 import { reviewRoutes } from "./modules/review/review.routes";
 import { adminRoutes } from "./modules/admin/admin.routes";
+import { dashboardRoutes } from "./modules/dashboard/dashboard.routes";
 
 const app: Application = express();
 
@@ -119,6 +120,11 @@ app.use(
 app.use(
   "/api/admin",
   adminRoutes
+);
+
+app.use(
+  "/api/dashboard",
+  dashboardRoutes
 );
 
 /*

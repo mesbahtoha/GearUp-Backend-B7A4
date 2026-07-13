@@ -5,18 +5,23 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 
 import { adminService } from "./admin.service";
+import { prisma } from "../../lib/prisma";
 
 const getAllUsers =
   catchAsync(async (req, res) => {
 
     const result =
-      await adminService.getAllUsersFromDB();
+      await adminService.getAllUsersFromDB(
+        req.query
+      );
 
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: "Users retrieved successfully",
-      data: result,
+      message:
+        "Users retrieved successfully",
+      data: result.data,
+      meta: result.meta,
     });
   });
 
@@ -41,6 +46,7 @@ const suspendUser =
 
     const result =
       await adminService.suspendUserIntoDB(
+        req.user!.id,
         req.params.id as string
       );
 
@@ -72,7 +78,9 @@ const getAllRentals =
   catchAsync(async (req, res) => {
 
     const result =
-      await adminService.getAllRentalsFromDB();
+      await adminService.getAllRentalsFromDB(
+        req.query
+      );
 
     sendResponse(res, {
       success: true,
@@ -86,7 +94,9 @@ const getAllPayments =
   catchAsync(async (req, res) => {
 
     const result =
-      await adminService.getAllPaymentsFromDB();
+      await adminService.getAllPaymentsFromDB(
+        req.query
+      );
 
     sendResponse(res, {
       success: true,
@@ -125,6 +135,23 @@ const deleteGear =
     });
   });
 
+const changeUserRole =
+  catchAsync(async (req, res) => {
+
+    const result =
+      await adminService.changeUserRoleIntoDB(
+        req.params.id as string,
+        req.body.role
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "User role updated successfully",
+      data: result,
+    });
+  });
+
 export const adminController = {
   getAllUsers,
   getSingleUser,
@@ -134,4 +161,5 @@ export const adminController = {
   getAllPayments,
   getDashboardStats,
   deleteGear,
+  changeUserRole,
 };
