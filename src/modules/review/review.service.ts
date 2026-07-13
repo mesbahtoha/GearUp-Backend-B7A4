@@ -1,79 +1,72 @@
 import { prisma } from "../../lib/prisma";
-import {
-  ICreateReview,
-  IUpdateReview,
-} from "./review.interface";
+import { ICreateReview, IUpdateReview } from "./review.interface";
 
 const createReviewIntoDB = async (
   customerId: string,
-  payload: ICreateReview
+  payload: ICreateReview,
 ) => {
-  const { gearId, rating, comment } =
-    payload;
+  const { gearId, rating, comment } = payload;
+
+  if (!gearId) {
+    throw new Error("Gear ID is required");
+  }
+
+  if (rating === undefined) {
+    throw new Error("Rating is required");
+  }
 
   if (rating < 1 || rating > 5) {
-    throw new Error(
-      "Rating must be between 1 and 5"
-    );
+    throw new Error("Rating must be between 1 and 5");
   }
 
-  const rental =
-    await prisma.rentalOrder.findFirst({
-      where: {
-        customerId,
-        gearId,
-        status: "RETURNED",
-      },
-    });
+  const rental = await prisma.rentalOrder.findFirst({
+    where: {
+      customerId,
+      gearId,
+      status: "RETURNED",
+    },
+  });
 
   if (!rental) {
-    throw new Error(
-      "You can only review returned rentals"
-    );
+    throw new Error("You can only review returned rentals");
   }
 
-  const existingReview =
-    await prisma.review.findFirst({
-      where: {
-        customerId,
-        gearId,
-      },
-    });
+  const existingReview = await prisma.review.findFirst({
+    where: {
+      customerId,
+      gearId,
+    },
+  });
 
   if (existingReview) {
-    throw new Error(
-      "You already reviewed this gear"
-    );
+    throw new Error("You already reviewed this gear");
   }
 
-  const review =
-    await prisma.review.create({
-      data: {
-        rating,
-        comment,
-        customerId,
-        gearId,
-      },
+  const review = await prisma.review.create({
+    data: {
+      rating,
+      comment,
+      customerId,
+      gearId,
+    },
 
-      include: {
-        customer: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
+    include: {
+      customer: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
         },
-
-        gear: true,
       },
-    });
+
+      gear: true,
+    },
+  });
 
   return review;
 };
 
-const getMyReviewsFromDB = async (
-  customerId: string
-) => {
+const getMyReviewsFromDB = async (customerId: string) => {
   return prisma.review.findMany({
     where: {
       customerId,
@@ -89,9 +82,7 @@ const getMyReviewsFromDB = async (
   });
 };
 
-const getGearReviewsFromDB = async (
-  gearId: string
-) => {
+const getGearReviewsFromDB = async (gearId: string) => {
   return prisma.review.findMany({
     where: {
       gearId,
@@ -112,38 +103,39 @@ const getGearReviewsFromDB = async (
   });
 };
 
-const getAllReviewsFromDB =
-  async () => {
-    return prisma.review.findMany({
-      include: {
-        customer: true,
-        gear: true,
-      },
+const getAllReviewsFromDB = async () => {
+  return prisma.review.findMany({
+    include: {
+      customer: true,
+      gear: true,
+    },
 
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  };
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
 
 const updateReviewIntoDB = async (
   reviewId: string,
   customerId: string,
-  payload: IUpdateReview
+  payload: IUpdateReview,
 ) => {
-  const review =
-    await prisma.review.findUniqueOrThrow({
-      where: {
-        id: reviewId,
-      },
-    });
-
   if (
-    review.customerId !== customerId
+    payload.rating !== undefined &&
+    (payload.rating < 1 || payload.rating > 5)
   ) {
-    throw new Error(
-      "You can update only your own review"
-    );
+    throw new Error("Rating must be between 1 and 5");
+  }
+
+  const review = await prisma.review.findUniqueOrThrow({
+    where: {
+      id: reviewId,
+    },
+  });
+
+  if (review.customerId !== customerId) {
+    throw new Error("You can update only your own review");
   }
 
   return prisma.review.update({
@@ -159,23 +151,15 @@ const updateReviewIntoDB = async (
   });
 };
 
-const deleteReviewFromDB = async (
-  reviewId: string,
-  customerId: string
-) => {
-  const review =
-    await prisma.review.findUniqueOrThrow({
-      where: {
-        id: reviewId,
-      },
-    });
+const deleteReviewFromDB = async (reviewId: string, customerId: string) => {
+  const review = await prisma.review.findUniqueOrThrow({
+    where: {
+      id: reviewId,
+    },
+  });
 
-  if (
-    review.customerId !== customerId
-  ) {
-    throw new Error(
-      "You can delete only your own review"
-    );
+  if (review.customerId !== customerId) {
+    throw new Error("You can delete only your own review");
   }
 
   await prisma.review.delete({
