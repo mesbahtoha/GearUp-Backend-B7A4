@@ -1,0 +1,13 @@
+import { Router } from "express";
+import { auth } from "../../middlewares/auth";
+import { Role } from "../../../generated/prisma/enums";
+import { reviewController } from "./review.controller";
+const router = Router();
+router.post("/", auth(Role.CUSTOMER), reviewController.createReview);
+router.get("/my-reviews", auth(Role.CUSTOMER), reviewController.getMyReviews);
+router.get("/all", auth(Role.ADMIN), reviewController.getAllReviews);
+router.get("/gear/:gearId", reviewController.getGearReviews);
+router.patch("/:id", auth(Role.CUSTOMER), reviewController.updateReview);
+router.delete("/:id", auth(Role.CUSTOMER), reviewController.deleteReview);
+export const reviewRoutes = router;
+//# sourceMappingURL=review.routes.js.map

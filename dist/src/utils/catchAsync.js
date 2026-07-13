@@ -1,0 +1,13 @@
+// import { NextFunction, Request, RequestHandler, Response } from "express";
+// import httpStatus from "http-status-codes";
+export const catchAsync = (fn) => {
+    return async (req, res, next) => {
+        try {
+            await fn(req, res, next);
+        }
+        catch (error) {
+            next(error);
+        }
+    };
+};
+//# sourceMappingURL=catchAsync.js.map

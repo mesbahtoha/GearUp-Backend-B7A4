@@ -41,7 +41,7 @@ const getSingleCategory = catchAsync(
   async (req: Request, res: Response) => {
     const result =
       await categoryService.getSingleCategoryFromDB(
-        req.params.id
+        req.params.id as string
       );
 
     sendResponse(res, {
@@ -58,7 +58,7 @@ const updateCategory = catchAsync(
   async (req: Request, res: Response) => {
     const result =
       await categoryService.updateCategoryIntoDB(
-        req.params.id,
+        req.params.id as string,
         req.body
       );
 
@@ -75,7 +75,7 @@ const updateCategory = catchAsync(
 const deleteCategory = catchAsync(
   async (req: Request, res: Response) => {
     await categoryService.deleteCategoryFromDB(
-      req.params.id
+      req.params.id as string
     );
 
     sendResponse(res, {
