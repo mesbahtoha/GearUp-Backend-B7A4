@@ -150,6 +150,96 @@ const cancelRental = catchAsync(
   }
 );
 
+const getProviderOrders = catchAsync(
+  async (req, res) => {
+
+    const result =
+      await rentalService.getProviderOrdersFromDB(
+        req.user!.id
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message:
+        "Provider orders retrieved successfully",
+      data: result,
+    });
+  }
+);
+
+const confirmOrder = catchAsync(
+  async (req, res) => {
+
+    const result =
+      await rentalService.confirmOrderIntoDB(
+        req.params.id as string
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message:
+        "Order confirmed successfully",
+      data: result,
+    });
+  }
+);
+
+const cancelOrder = catchAsync(
+  async (req, res) => {
+
+    const result =
+      await rentalService.cancelOrderIntoDB(
+        req.params.id as string
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message:
+        "Order cancelled successfully",
+      data: result,
+    });
+  }
+);
+
+const markPickedUp = catchAsync(
+  async (req, res) => {
+
+    const result =
+      await rentalService.markPickedUpIntoDB(
+        req.params.id as string
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message:
+        "Gear handed over successfully",
+      data: result,
+    });
+  }
+);
+
+const markReturned = catchAsync(
+  async (req, res) => {
+
+    const result =
+      await rentalService.markReturnedIntoDB(
+        req.params.id as string
+      );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: 200,
+      message:
+        "Gear returned successfully",
+      data: result,
+    });
+  }
+);
+
 export const rentalController = {
   createRental,
   getMyRentals,
@@ -161,4 +251,10 @@ export const rentalController = {
   pickupRental,
   returnRental,
   cancelRental,
+
+  getProviderOrders,
+  confirmOrder,
+  cancelOrder,
+  markPickedUp,
+  markReturned,
 };

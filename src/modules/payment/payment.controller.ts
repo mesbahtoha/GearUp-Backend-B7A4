@@ -7,7 +7,7 @@ import { sendResponse } from "../../utils/sendResponse";
 
 import { paymentService } from "./payment.service";
 
-const createPaymentIntent =
+const createCheckoutSession =
   catchAsync(
     async (
       req: Request,
@@ -15,8 +15,10 @@ const createPaymentIntent =
     ) => {
 
       const result =
-        await paymentService.createPaymentIntentIntoDB(
-          req.params.rentalId as string
+        await paymentService.createCheckoutSession(
+          req.params
+            .rentalId as string,
+          req.user!.id
         );
 
       sendResponse(res, {
@@ -24,12 +26,12 @@ const createPaymentIntent =
         statusCode:
           httpStatus.OK,
         message:
-          "Payment intent created successfully",
+          "Checkout session created successfully",
         data: result,
       });
     }
   );
 
 export const paymentController = {
-  createPaymentIntent,
+  createCheckoutSession,
 };

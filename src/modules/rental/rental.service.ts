@@ -289,6 +289,141 @@ const cancelRentalIntoDB = async (
   });
 };
 
+const getProviderOrdersFromDB = async (
+  providerId: string
+) => {
+  const orders =
+    await prisma.rentalOrder.findMany({
+      where: {
+        gear: {
+          providerId,
+        },
+      },
+      include: {
+        customer: true,
+        gear: true,
+        payment: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+  return orders;
+};
+
+const confirmOrderIntoDB = async (
+  rentalId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+    });
+
+  if (rental.status !== "PLACED") {
+    throw new Error(
+      "Only placed orders can be confirmed"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+    data: {
+      status: "CONFIRMED",
+    },
+  });
+};
+
+const cancelOrderIntoDB = async (
+  rentalId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+    });
+
+  if (
+    rental.status === "PAID" ||
+    rental.status === "PICKED_UP" ||
+    rental.status === "RETURNED"
+  ) {
+    throw new Error(
+      "Order cannot be cancelled"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+    data: {
+      status: "CANCELLED",
+    },
+  });
+};
+
+const markPickedUpIntoDB = async (
+  rentalId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+    });
+
+  if (rental.status !== "PAID") {
+    throw new Error(
+      "Payment required first"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+    data: {
+      status: "PICKED_UP",
+    },
+  });
+};
+
+const markReturnedIntoDB = async (
+  rentalId: string
+) => {
+
+  const rental =
+    await prisma.rentalOrder.findUniqueOrThrow({
+      where: {
+        id: rentalId,
+      },
+    });
+
+  if (rental.status !== "PICKED_UP") {
+    throw new Error(
+      "Gear must be picked up first"
+    );
+  }
+
+  return prisma.rentalOrder.update({
+    where: {
+      id: rentalId,
+    },
+    data: {
+      status: "RETURNED",
+    },
+  });
+};
+
 export const rentalService = {
   createRentalIntoDB,
   getMyRentalsFromDB,
@@ -299,4 +434,9 @@ export const rentalService = {
   pickupRentalIntoDB,
   returnRentalIntoDB,
   cancelRentalIntoDB,
+  getProviderOrdersFromDB,
+  confirmOrderIntoDB,
+  cancelOrderIntoDB,
+  markPickedUpIntoDB,
+  markReturnedIntoDB,
 };
