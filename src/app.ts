@@ -8,6 +8,7 @@ import { globalErrorHandler } from "./middlewares/errorHandler";
 import { categoryRoutes } from "./modules/category/category.routes";
 import { gearRoutes } from "./modules/gear/gear.routes";
 import { rentalRoutes } from "./modules/rental/rental.routes";
+import { paymentRoutes } from "./modules/payment/payment.routes";
 
 const app: Application = express();
 
@@ -34,6 +35,11 @@ app.use(
 
 app.use("/api/gears", gearRoutes);
 app.use("/api/rentals", rentalRoutes);
+
+app.use(
+  "/api/payments",
+  paymentRoutes
+);
 
 app.use((req, res) => {
   res.status(404).json({
