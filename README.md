@@ -502,6 +502,6 @@ Import the collection and environment file into Postman to test all endpoints.
 
 # 👨‍💻 Author
 
-**Md. Mesbahul Alam (Toha)**
+**Md. Mesbahul Alam**
 
 ---
