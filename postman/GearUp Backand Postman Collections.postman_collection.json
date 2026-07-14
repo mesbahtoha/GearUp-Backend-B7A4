@@ -16,12 +16,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://gearup-backend-b7a4.onrender.com/api/gears",
-							"protocol": "https",
+							"raw": "{{BASE_URL}}/api/gears",
 							"host": [
-								"gearup-backend-b7a4",
-								"onrender",
-								"com"
+								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
@@ -38,11 +35,9 @@
 						"header": [],
 						"url": {
 							"raw": "{{BASE_URL}}/api/gears?page=1&limit=10",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"gears"
@@ -68,11 +63,9 @@
 						"header": [],
 						"url": {
 							"raw": "{{BASE_URL}}/api/gears?search=tent",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"gears"
@@ -94,11 +87,9 @@
 						"header": [],
 						"url": {
 							"raw": "{{BASE_URL}}/api/gears?minPrice=10&maxPrice=50",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"gears"
@@ -123,16 +114,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/api/gears/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
-							"protocol": "http",
+							"raw": "{{BASE_URL}}/api/gears/1dac0e0c-90da-4b7e-be28-7a6aae829ad2",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"gears",
-								"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+								"1dac0e0c-90da-4b7e-be28-7a6aae829ad2"
 							]
 						}
 					},
@@ -150,17 +139,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
 							"raw": "{{BASE_URL}}/api/admin/dashboard",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
@@ -177,17 +164,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
 							"raw": "{{BASE_URL}}/api/admin/users",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
@@ -204,17 +189,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
 							"raw": "{{BASE_URL}}/api/admin/rentals",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
@@ -231,17 +214,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
 							"raw": "{{BASE_URL}}/api/admin/payments",
-							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
@@ -258,22 +239,20 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/api/admin/users/776a2b95-8fe6-477d-bd87-0e4ddea46951/suspend",
-							"protocol": "http",
+							"raw": "{{BASE_URL}}/api/admin/users/565b919b-3b41-40e2-87e9-64703cb5d4d8/suspend",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
 								"users",
-								"776a2b95-8fe6-477d-bd87-0e4ddea46951",
+								"565b919b-3b41-40e2-87e9-64703cb5d4d8",
 								"suspend"
 							]
 						}
@@ -287,22 +266,20 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/api/admin/users/776a2b95-8fe6-477d-bd87-0e4ddea46951/activate",
-							"protocol": "http",
+							"raw": "{{BASE_URL}}/api/admin/users/565b919b-3b41-40e2-87e9-64703cb5d4d8/activate",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
 								"users",
-								"776a2b95-8fe6-477d-bd87-0e4ddea46951",
+								"565b919b-3b41-40e2-87e9-64703cb5d4d8",
 								"activate"
 							]
 						}
@@ -310,28 +287,26 @@
 					"response": []
 				},
 				{
-					"name": "Delete Gear",
+					"name": "Suspend Gear (make isActive FALSE)",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOGQ5OTBlLThhZjEtNDU0Ny05ZDEwLTY0NWM5ZjA0NDM0ZiIsImVtYWlsIjoiYWRtaW5AZ2VhcnVwLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc4Mzk0MzY1NywiZXhwIjoxNzg0MDMwMDU3fQ.dKhAg_jAl1vv0ZJKdpu9DBd3hORsDGrkW57RXHy-PEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{BASE_URL}}/api/admin/gears/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
-							"protocol": "http",
+							"raw": "{{BASE_URL}}/api/admin/gears/1dac0e0c-90da-4b7e-be28-7a6aae829ad2",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
 								"gears",
-								"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+								"1dac0e0c-90da-4b7e-be28-7a6aae829ad2"
 							]
 						}
 					},
@@ -436,12 +411,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgzOTYwOTA3LCJleHAiOjE3ODQwNDczMDd9.vNnWPoPo6JcZSv4k7f0WWg7r7wfbV_KHze71C2gtf1A"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA0ODM3LCJleHAiOjE3ODQwOTEyMzd9.uFOtf37Eh4jiUHZGD8xc--8ohFygKlL_NUqjnOM5Ybk"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Camping\"\n}",
+					"raw": "{\n  \"name\": \"Football\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -502,7 +477,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Mountain Tent\",\n  \"brand\": \"NatureHike\",\n  \"description\": \"4 Person Waterproof Tent\",\n  \"pricePerDay\": 25,\n  \"stock\": 10,\n  \"isAvailable\": true,\n  \"categoryId\": \"1411e910-b50d-4941-b275-61c34ec72d98\"\n}",
+					"raw": "{\n  \"name\": \"Shoo\",\n  \"brand\": \"Nike\",\n  \"description\": \"5 Person Waterproof Tent\",\n  \"pricePerDay\": 25,\n  \"stock\": 10,\n  \"isAvailable\": true,\n  \"categoryId\": \"1411e910-b50d-4941-b275-61c34ec72d98\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -529,17 +504,15 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5Mzk2MjQsImV4cCI6MTc4NDAyNjAyNH0.HG9-n6st7rLMKxCQ7LJsFNinfZ5ijmm-cFyxnTjVH00",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYwOTUsImV4cCI6MTc4NDA5MjQ5NX0.LfdRvyF7Om2_FXJSmGPRENzkuV0c9xXrbU7OMsZGvTM",
 						"type": "text"
 					}
 				],
 				"url": {
 					"raw": "{{BASE_URL}}/api/gears/my-gears",
-					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"gears",
@@ -564,12 +537,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://gearup-backend-b7a4.onrender.com/api/auth/login",
-					"protocol": "https",
+					"raw": "{{BASE_URL}}/api/auth/login",
 					"host": [
-						"gearup-backend-b7a4",
-						"onrender",
-						"com"
+						"{{BASE_URL}}"
 					],
 					"path": [
 						"api",
@@ -587,13 +557,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTYyMjI3LCJleHAiOjE3ODQwNDg2Mjd9._Iq7qwCUTo4VUUwcvN3z1EuGN2zQg5AVl2KoSNOs1Ls",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"quantity\": 2,\n  \"startDate\": \"2026-07-20\",\n  \"endDate\": \"2026-07-25\"\n}",
+					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"quantity\": 4,\n  \"startDate\": \"2026-07-20\",\n  \"endDate\": \"2026-07-25\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -620,17 +590,21 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkOTk1OWZkLTJlOTQtNDllMi05MWQxLTRhNzYzN2VhZjVjNyIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTQxMzI2LCJleHAiOjE3ODQwMjc3MjZ9.J3LoVr8zQy127P0bJvXMgkogZao3bTz6kIUP-75qx-g",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
 					"raw": "{{BASE_URL}}/api/rentals/my-rentals",
-					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"rentals",
@@ -647,7 +621,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjIzNTcsImV4cCI6MTc4NDA0ODc1N30.aNGVr24bUiVc4TLYWxseencTszcVNIniceQbPzHV73I",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYzNzYsImV4cCI6MTc4NDA5Mjc3Nn0.lMqGbrJ8Tq4bAWzVqnjjbjPidenyFqLFahxISGVr5Ko",
 						"type": "text"
 					}
 				],
@@ -672,19 +646,19 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjIzNTcsImV4cCI6MTc4NDA0ODc1N30.aNGVr24bUiVc4TLYWxseencTszcVNIniceQbPzHV73I",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYzNzYsImV4cCI6MTc4NDA5Mjc3Nn0.lMqGbrJ8Tq4bAWzVqnjjbjPidenyFqLFahxISGVr5Ko",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/api/rentals/1ad610b9-995b-4006-a014-f5fac9494e7d/confirm",
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/confirm",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
 						"api",
 						"rentals",
-						"1ad610b9-995b-4006-a014-f5fac9494e7d",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
 						"confirm"
 					]
 				}
@@ -698,12 +672,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTYzNzg2LCJleHAiOjE3ODQwNTAxODZ9.355gu1JINBB-eKUfQxf_icJphcdeiAh3nnoR_ZF0OQ4",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2NTY1LCJleHAiOjE3ODQwOTI5NjV9.oRG9sehG56Xq_SCJV2VPP2P0R_OgsR6a_7f__hP09IA",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/api/payments/checkout/1ad610b9-995b-4006-a014-f5fac9494e7d",
+					"raw": "{{BASE_URL}}/api/payments/checkout/e0d054fb-6af2-49ab-becc-d1559c0d6145",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -711,7 +685,7 @@
 						"api",
 						"payments",
 						"checkout",
-						"1ad610b9-995b-4006-a014-f5fac9494e7d"
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145"
 					]
 				}
 			},
@@ -724,21 +698,19 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NDI5MDEsImV4cCI6MTc4NDAyOTMwMX0.UFPDaOd_pscP6JUAsSc4IDzIQAMWzNLG-tDU72b5x2M",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDY3ODgsImV4cCI6MTc4NDA5MzE4OH0.nViv4EnCf2_TD_uvv6R44QO7hfFuub311EVnTwM6nHk",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/api/rentals/ae4361cb-2229-412b-921e-62b4743855d6/pickup",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/pickup",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"rentals",
-						"ae4361cb-2229-412b-921e-62b4743855d6",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
 						"pickup"
 					]
 				}
@@ -746,27 +718,25 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Return",
 			"request": {
 				"method": "PATCH",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4MzdkMTA1LWFkMzktNDVmYi1hNTFmLWUxZjQzNGJhYWZlZCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NDI5MDEsImV4cCI6MTc4NDAyOTMwMX0.UFPDaOd_pscP6JUAsSc4IDzIQAMWzNLG-tDU72b5x2M",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDY3ODgsImV4cCI6MTc4NDA5MzE4OH0.nViv4EnCf2_TD_uvv6R44QO7hfFuub311EVnTwM6nHk",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/api/rentals/ae4361cb-2229-412b-921e-62b4743855d6/return",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/return",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"rentals",
-						"ae4361cb-2229-412b-921e-62b4743855d6",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
 						"return"
 					]
 				}
@@ -780,13 +750,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZkOTk1OWZkLTJlOTQtNDllMi05MWQxLTRhNzYzN2VhZjVjNyIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgzOTQzMTU2LCJleHAiOjE3ODQwMjk1NTZ9.e4OyCfJ2_MSMnSxUzlrXsNI5gk-3NZIcG9UWBrDG1oM",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA3MDI0LCJleHAiOjE3ODQwOTM0MjR9.-Rlq3I2hCmX7NhNItF4EXk9W3f8nL3GWlBqJ1tXd0nE",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"gearId\": \"aba628be-2dd6-43e0-81e1-24e22ce3d5cb\",\n  \"rating\": 5,\n  \"comment\": \"Excellent quality and condition.\"\n}",
+					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"rating\": 5,\n  \"comment\": \"Excellent quality and condition.\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -795,11 +765,9 @@
 				},
 				"url": {
 					"raw": "{{BASE_URL}}/api/reviews",
-					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"reviews"
@@ -815,11 +783,9 @@
 				"header": [],
 				"url": {
 					"raw": "{{BASE_URL}}/api/reviews/my-reviews",
-					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"reviews",
@@ -842,17 +808,15 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/api/reviews/gear/aba628be-2dd6-43e0-81e1-24e22ce3d5cb",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/reviews/gear/7959a6e4-8402-4d36-8a49-cfeee06e33fb",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"reviews",
 						"gear",
-						"aba628be-2dd6-43e0-81e1-24e22ce3d5cb"
+						"7959a6e4-8402-4d36-8a49-cfeee06e33fb"
 					]
 				}
 			},
