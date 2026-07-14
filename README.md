@@ -4,7 +4,7 @@ GearUp is a backend API for a Sports & Outdoor Equipment Rental Platform where c
 
 ---
 
-## 🌐 Live API
+# 🌐 Live API
 
 Production Server:
 
@@ -12,7 +12,26 @@ https://gearup-backend-b7a4.onrender.com
 
 ---
 
-## 🎯 Project Overview
+# 🎥 Project Demonstration
+
+Video Walkthrough:
+
+https://drive.google.com/drive/folders/1SB4AbuENTyAGG9thCvpzFmlHz8p043uW
+
+The demo video covers:
+
+- Project Overview
+- API Architecture
+- Admin Role Demonstration
+- Provider Role Demonstration
+- Customer Role Demonstration
+- CRUD Operations
+- Error Handling & Validation
+- Technical Challenge Discussion
+
+---
+
+# 🎯 Project Overview
 
 GearUp allows users to:
 
@@ -26,9 +45,10 @@ GearUp allows users to:
 
 ---
 
-## 👥 User Roles
+# 👥 User Roles
 
-### Admin
+## Admin
+
 - Manage categories
 - Manage users
 - View platform analytics
@@ -37,7 +57,8 @@ GearUp allows users to:
 - Suspend or activate users
 - Delete gears
 
-### Provider
+## Provider
+
 - Create gears
 - Update gears
 - Manage inventory
@@ -45,7 +66,8 @@ GearUp allows users to:
 - Confirm rentals
 - Mark pickups and returns
 
-### Customer
+## Customer
+
 - Browse gears
 - Create rentals
 - Make payments
@@ -56,24 +78,30 @@ GearUp allows users to:
 
 # 🛠️ Tech Stack
 
-### Backend
+## Backend
+
 - Node.js
 - Express.js
 - TypeScript
 
-### Database
+## Database
+
 - PostgreSQL (NeonDB)
 
-### ORM
+## ORM
+
 - Prisma ORM
 
-### Authentication
+## Authentication
+
 - JWT (Access Token & Refresh Token)
 
-### Payment Gateway
+## Payment Gateway
+
 - Stripe
 
-### Other Packages
+## Other Packages
+
 - bcryptjs
 - cookie-parser
 - cors
@@ -105,6 +133,17 @@ src/
 ├── utils/
 ├── app.ts
 └── server.ts
+│
+prisma/
+│
+generated/
+│
+postman/
+│   └── GearUp Backand Postman Collections.postman_collection.json
+│
+README.md
+package.json
+tsconfig.json
 ```
 
 ---
@@ -114,8 +153,8 @@ src/
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
-cd gearup-backend
+git clone https://github.com/mesbahtoha/GearUp-Backend-B7A4.git
+cd GearUp-Backend-B7A4
 ```
 
 ## Install Dependencies
@@ -177,19 +216,19 @@ npm run prisma db seed
 
 # ▶️ Run Project
 
-Development:
+## Development
 
 ```bash
 npm run dev
 ```
 
-Build:
+## Build
 
 ```bash
 npm run build
 ```
 
-Production:
+## Production
 
 ```bash
 npm start
@@ -473,35 +512,118 @@ ZIP: Any valid ZIP
 
 # 📬 Postman Collection
 
-The complete Postman Collection is included with this project submission.
+The complete Postman Collection is included in this repository.
 
-Import the collection and environment file into Postman to test all endpoints.
+Collection Link:
+
+https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
+
+Import the collection into Postman to test all available endpoints.
+
+Base URL:
+
+```text
+https://gearup-backend-b7a4.onrender.com
+```
 
 ---
 
 # ✨ Features Implemented
 
+## Authentication & Security
+
 - JWT Authentication
+- Refresh Token System
 - Role-Based Authorization
-- Category Management
-- Gear Management
-- Rental Management
-- Stripe Payment Integration
-- Stripe Webhook Handling
-- Review System
-- Admin Dashboard
-- User Management
-- Provider Order Management
-- Pagination
+- Password Hashing with bcryptjs
+- Protected Routes
+
+## User Management
+
+- Customer Registration & Login
+- Provider Registration & Login
+- Profile Management
+- User Suspension & Activation
+
+## Category Management
+
+- Create Category
+- Update Category
+- Delete Category
+- View Categories
+
+## Gear Management
+
+- Create Gear
+- Update Gear
+- Delete Gear
+- Inventory Management
 - Search & Filtering
+- Pagination Support
+
+## Rental Management
+
+- Create Rental
+- Confirm Rental
+- Pickup Management
+- Return Management
+- Rental History
+
+## Payment System
+
+- Stripe Payment Integration
+- Checkout Session Creation
+- Webhook Event Handling
+- Payment Tracking
+
+## Review System
+
+- Create Reviews
+- View Gear Reviews
+- Customer Review History
+
+## Admin Panel
+
+- Dashboard Analytics
+- User Management
+- Rental Monitoring
+- Payment Monitoring
+- Gear Moderation
+
+## Backend Features
+
+- Modular Architecture
+- Prisma ORM
+- PostgreSQL Database
 - Global Error Handling
-- Secure Password Hashing
-- Prisma ORM Integration
+- Environment Configuration
+- RESTful API Design
+
+---
+
+# 🔗 Repository & Live Links
+
+## GitHub Repository
+
+https://github.com/mesbahtoha/GearUp-Backend-B7A4
+
+## Live API
+
+https://gearup-backend-b7a4.onrender.com
+
+## Demo Video
+
+https://drive.google.com/drive/folders/1SB4AbuENTyAGG9thCvpzFmlHz8p043uW
+
+## Postman Collection
+
+https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
 
 ---
 
 # 👨‍💻 Author
 
-**Md. Mesbahul Alam**
+**Md. Mesbahul Alam Toha**
 
----
+
+
