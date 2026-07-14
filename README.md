@@ -12,22 +12,17 @@ https://gearup-backend-b7a4.onrender.com
 
 ---
 
-# 🎥 Project Demonstration
-
-Video Walkthrough:
+# 🎥 Demo Video
 
 https://drive.google.com/drive/folders/1SB4AbuENTyAGG9thCvpzFmlHz8p043uW
 
-The demo video covers:
+---
 
-- Project Overview
-- API Architecture
-- Admin Role Demonstration
-- Provider Role Demonstration
-- Customer Role Demonstration
-- CRUD Operations
-- Error Handling & Validation
-- Technical Challenge Discussion
+# 📬 Postman Collection
+
+Postman Collection:
+
+https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
 
 ---
 
@@ -51,28 +46,34 @@ GearUp allows users to:
 
 - Manage categories
 - Manage users
-- View platform analytics
-- Manage rentals
-- Manage payments
-- Suspend or activate users
+- View dashboard statistics
+- View all rentals
+- View all payments
+- Suspend users
+- Activate users
+- Change user roles
 - Delete gears
 
 ## Provider
 
 - Create gears
 - Update gears
-- Manage inventory
+- Delete gears
+- View own gears
 - View rental orders
-- Confirm rentals
-- Mark pickups and returns
+- Confirm orders
+- Mark pickup status
+- Mark return status
 
 ## Customer
 
 - Browse gears
 - Create rentals
-- Make payments
 - View rental history
-- Submit reviews
+- Make payments
+- Create reviews
+- Update reviews
+- Delete reviews
 
 ---
 
@@ -94,7 +95,9 @@ GearUp allows users to:
 
 ## Authentication
 
-- JWT (Access Token & Refresh Token)
+- JWT Authentication
+- Access Token
+- Refresh Token
 
 ## Payment Gateway
 
@@ -103,47 +106,46 @@ GearUp allows users to:
 ## Other Packages
 
 - bcryptjs
-- cookie-parser
 - cors
+- cookie-parser
 - dotenv
-- http-status
 - jsonwebtoken
+- http-status
 
 ---
 
 # 📂 Project Structure
 
 ```bash
-src/
+gearup-backend/
 │
-├── config/
-├── lib/
-├── middlewares/
-├── modules/
-│   ├── auth/
-│   ├── user/
-│   ├── category/
-│   ├── gear/
-│   ├── rental/
-│   ├── payment/
-│   ├── review/
-│   ├── admin/
-│   └── dashboard/
+├── src/
+│   ├── config/
+│   ├── lib/
+│   ├── middlewares/
+│   ├── modules/
+│   │   ├── auth/
+│   │   ├── user/
+│   │   ├── category/
+│   │   ├── gear/
+│   │   ├── rental/
+│   │   ├── payment/
+│   │   ├── review/
+│   │   ├── admin/
+│   │   └── dashboard/
+│   │
+│   ├── utils/
+│   ├── app.ts
+│   └── server.ts
 │
-├── utils/
-├── app.ts
-└── server.ts
+├── prisma/
 │
-prisma/
-│
-generated/
-│
-postman/
+├── postman/
 │   └── GearUp Backand Postman Collections.postman_collection.json
 │
-README.md
-package.json
-tsconfig.json
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
 ---
@@ -154,6 +156,7 @@ tsconfig.json
 
 ```bash
 git clone https://github.com/mesbahtoha/GearUp-Backend-B7A4.git
+
 cd GearUp-Backend-B7A4
 ```
 
@@ -194,41 +197,41 @@ STRIPE_WEBHOOK_SECRET=your_webhook_secret
 
 # 🗄️ Database Setup
 
-Generate Prisma Client:
+Generate Prisma Client
 
 ```bash
 npx prisma generate
 ```
 
-Run Migration:
+Run Migration
 
 ```bash
 npx prisma migrate deploy
 ```
 
-Seed Database:
+Seed Database
 
 ```bash
-npm run prisma db seed
+npx prisma db seed
 ```
 
 ---
 
 # ▶️ Run Project
 
-## Development
+Development
 
 ```bash
 npm run dev
 ```
 
-## Build
+Build
 
 ```bash
 npm run build
 ```
 
-## Production
+Production
 
 ```bash
 npm start
@@ -238,9 +241,7 @@ npm start
 
 # 🔐 Authentication
 
-The API uses JWT Authentication.
-
-Protected Routes require:
+Protected routes require:
 
 ```http
 Authorization: Bearer ACCESS_TOKEN
@@ -261,71 +262,93 @@ Authorization: Bearer ACCESS_TOKEN
 
 # 📌 API Endpoints
 
-## Authentication
+# Root
 
-### Login
+### Server Check
+
+```http
+GET /
+```
+
+---
+
+# Authentication
+
+## Login
 
 ```http
 POST /api/auth/login
 ```
 
-### Refresh Token
+## Refresh Token
 
 ```http
 POST /api/auth/refresh-token
 ```
 
-### Change Password
+## Logout
 
 ```http
-POST /api/auth/change-password
+POST /api/auth/logout
+```
+
+## Change Password
+
+```http
+PATCH /api/auth/change-password
 ```
 
 ---
 
-## Users
+# Users
 
-### Register User
+## Register User
 
 ```http
 POST /api/users/register
 ```
 
-### Get Profile
+## My Profile
 
 ```http
-GET /api/users/profile
+GET /api/users/me
 ```
 
-### Update Profile
+## Update Profile
 
 ```http
-PATCH /api/users/profile
+PUT /api/users/my-profile
 ```
 
 ---
 
-## Categories
+# Categories
 
-### Create Category
+## Create Category
 
 ```http
 POST /api/categories
 ```
 
-### Get Categories
+## Get All Categories
 
 ```http
 GET /api/categories
 ```
 
-### Update Category
+## Get Single Category
+
+```http
+GET /api/categories/:id
+```
+
+## Update Category
 
 ```http
 PATCH /api/categories/:id
 ```
 
-### Delete Category
+## Delete Category
 
 ```http
 DELETE /api/categories/:id
@@ -333,95 +356,113 @@ DELETE /api/categories/:id
 
 ---
 
-## Gears
+# Gears
 
-### Create Gear
+## Create Gear
 
 ```http
 POST /api/gears
 ```
 
-### Get All Gears
+## Get All Gears
 
 ```http
 GET /api/gears
 ```
 
-### Get Single Gear
+## Get Single Gear
 
 ```http
 GET /api/gears/:id
 ```
 
-### Update Gear
-
-```http
-PATCH /api/gears/:id
-```
-
-### Delete Gear
-
-```http
-DELETE /api/gears/:id
-```
-
-### Provider Gears
+## Get My Gears
 
 ```http
 GET /api/gears/my-gears
 ```
 
+## Update Gear
+
+```http
+PATCH /api/gears/:id
+```
+
+## Delete Gear
+
+```http
+DELETE /api/gears/:id
+```
+
 ---
 
-## Rentals
+# Rentals
 
-### Create Rental
+## Create Rental
 
 ```http
 POST /api/rentals
 ```
 
-### Customer Rentals
+## My Rentals
 
 ```http
 GET /api/rentals/my-rentals
 ```
 
-### Provider Orders
+## Provider Orders
 
 ```http
 GET /api/rentals/provider-orders
 ```
 
-### Confirm Rental
+## Get Single Rental
+
+```http
+GET /api/rentals/:id
+```
+
+## Get All Rentals (Admin)
+
+```http
+GET /api/rentals/all
+```
+
+## Confirm Order
 
 ```http
 PATCH /api/rentals/:id/confirm
 ```
 
-### Pickup Rental
+## Pickup Order
 
 ```http
 PATCH /api/rentals/:id/pickup
 ```
 
-### Return Rental
+## Return Order
 
 ```http
 PATCH /api/rentals/:id/return
 ```
 
+## Cancel Order
+
+```http
+PATCH /api/rentals/:id/cancel
+```
+
 ---
 
-## Payments
+# Payments
 
-### Create Checkout Session
+## Create Checkout Session
 
 ```http
 POST /api/payments/checkout/:rentalId
 ```
 
-### Stripe Webhook
+## Stripe Webhook
 
 ```http
 POST /api/webhooks/stripe
@@ -429,67 +470,113 @@ POST /api/webhooks/stripe
 
 ---
 
-## Reviews
+# Reviews
 
-### Create Review
+## Create Review
 
 ```http
 POST /api/reviews
 ```
 
-### My Reviews
+## My Reviews
 
 ```http
 GET /api/reviews/my-reviews
 ```
 
-### Gear Reviews
+## Get All Reviews
+
+```http
+GET /api/reviews/all
+```
+
+## Gear Reviews
 
 ```http
 GET /api/reviews/gear/:gearId
 ```
 
+## Update Review
+
+```http
+PATCH /api/reviews/:id
+```
+
+## Delete Review
+
+```http
+DELETE /api/reviews/:id
+```
+
 ---
 
-## Admin
+# Dashboard
 
-### Dashboard
+## Provider Dashboard
+
+```http
+GET /api/dashboard/provider
+```
+
+## Customer Dashboard
+
+```http
+GET /api/dashboard/customer
+```
+
+---
+
+# Admin
+
+## Dashboard Statistics
 
 ```http
 GET /api/admin/dashboard
 ```
 
-### Users
+## Get All Users
 
 ```http
 GET /api/admin/users
 ```
 
-### Rentals
+## Get Single User
 
 ```http
-GET /api/admin/rentals
+GET /api/admin/users/:id
 ```
 
-### Payments
-
-```http
-GET /api/admin/payments
-```
-
-### Suspend User
+## Suspend User
 
 ```http
 PATCH /api/admin/users/:id/suspend
 ```
 
-### Activate User
+## Activate User
 
 ```http
 PATCH /api/admin/users/:id/activate
 ```
 
-### Delete Gear
+## Change User Role
+
+```http
+PATCH /api/admin/users/:id/role
+```
+
+## Get All Rentals
+
+```http
+GET /api/admin/rentals
+```
+
+## Get All Payments
+
+```http
+GET /api/admin/payments
+```
+
+## Delete Gear
 
 ```http
 DELETE /api/admin/gears/:id
@@ -499,131 +586,66 @@ DELETE /api/admin/gears/:id
 
 # 💳 Stripe Test Card
 
-Use the following test card while testing Stripe payments:
+Use this card for testing payments:
 
 ```text
 Card Number: 4242 4242 4242 4242
-Expiry: Any future date
+Expiry Date: Any future date
 CVV: Any 3 digits
-ZIP: Any valid ZIP
-```
-
----
-
-# 📬 Postman Collection
-
-The complete Postman Collection is included in this repository.
-
-Collection Link:
-
-https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
-
-Import the collection into Postman to test all available endpoints.
-
-Base URL:
-
-```text
-https://gearup-backend-b7a4.onrender.com
+ZIP: Any valid ZIP code
 ```
 
 ---
 
 # ✨ Features Implemented
 
-## Authentication & Security
-
 - JWT Authentication
 - Refresh Token System
-- Role-Based Authorization
-- Password Hashing with bcryptjs
-- Protected Routes
-
-## User Management
-
-- Customer Registration & Login
-- Provider Registration & Login
-- Profile Management
-- User Suspension & Activation
-
-## Category Management
-
-- Create Category
-- Update Category
-- Delete Category
-- View Categories
-
-## Gear Management
-
-- Create Gear
-- Update Gear
-- Delete Gear
-- Inventory Management
-- Search & Filtering
-- Pagination Support
-
-## Rental Management
-
-- Create Rental
-- Confirm Rental
-- Pickup Management
-- Return Management
-- Rental History
-
-## Payment System
-
+- Role Based Authorization
+- Customer Dashboard
+- Provider Dashboard
+- Category Management
+- Gear Management
+- Rental Management
 - Stripe Payment Integration
-- Checkout Session Creation
-- Webhook Event Handling
-- Payment Tracking
-
-## Review System
-
-- Create Reviews
-- View Gear Reviews
-- Customer Review History
-
-## Admin Panel
-
-- Dashboard Analytics
+- Stripe Webhook Handling
+- Review System
+- Admin Dashboard
 - User Management
-- Rental Monitoring
-- Payment Monitoring
-- Gear Moderation
-
-## Backend Features
-
-- Modular Architecture
-- Prisma ORM
-- PostgreSQL Database
+- Provider Order Management
+- Search & Filtering
+- Pagination
 - Global Error Handling
-- Environment Configuration
-- RESTful API Design
+- Secure Password Hashing
+- Prisma ORM Integration
+- PostgreSQL Database Integration
 
 ---
 
-# 🔗 Repository & Live Links
+# 📬 Postman Testing
 
-## GitHub Repository
+1. Import the Postman Collection from the `postman` folder.
+2. Set Base URL:
 
-https://github.com/mesbahtoha/GearUp-Backend-B7A4
-
-## Live API
-
+```text
 https://gearup-backend-b7a4.onrender.com
+```
 
-## Demo Video
+3. Login using Admin, Provider, or Customer credentials.
+4. Copy Access Token.
+5. Add:
 
-https://drive.google.com/drive/folders/1SB4AbuENTyAGG9thCvpzFmlHz8p043uW
+```text
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
 
-## Postman Collection
-
-https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
+6. Test all protected endpoints.
 
 ---
 
 # 👨‍💻 Author
 
-**Md. Mesbahul Alam Toha**
+**Md. Mesbahul Alam (Toha)**
 
-
-
+---
+⭐ If you found this project useful, please give it a star on GitHub.
