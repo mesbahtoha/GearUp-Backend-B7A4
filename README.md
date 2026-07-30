@@ -12,6 +12,14 @@ https://gearup-backend-b7a4.onrender.com
 
 ---
 
+# 🎥 Video Explanation
+
+Project Walkthrough:
+
+https://drive.google.com/file/d/1YpPP2p0qLrMqJxGvXj3K9LF_XAK1yguf/view?usp=sharing
+
+---
+
 ## 🎯 Project Overview
 
 GearUp allows users to:
