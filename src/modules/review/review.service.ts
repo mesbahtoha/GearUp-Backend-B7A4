@@ -1,6 +1,9 @@
 import { prisma } from "../../lib/prisma";
 import { ICreateReview, IUpdateReview } from "./review.interface";
+<<<<<<< HEAD
 import { getPagination, getPaginationMeta } from "../../utils/pagination";
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 
 const createReviewIntoDB = async (
   customerId: string,
@@ -67,6 +70,7 @@ const createReviewIntoDB = async (
   return review;
 };
 
+<<<<<<< HEAD
 const getMyReviewsFromDB = async (customerId: string, query?: { page?: number; limit?: number }) => {
   const { page, limit, skip } = getPagination(query || {});
   const [reviews, total] = await Promise.all([
@@ -125,6 +129,56 @@ const getAllReviewsFromDB = async (query?: { page?: number; limit?: number }) =>
     prisma.review.count(),
   ]);
   return { data: reviews, meta: getPaginationMeta(page, limit, total) };
+=======
+const getMyReviewsFromDB = async (customerId: string) => {
+  return prisma.review.findMany({
+    where: {
+      customerId,
+    },
+
+    include: {
+      gear: true,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
+const getGearReviewsFromDB = async (gearId: string) => {
+  return prisma.review.findMany({
+    where: {
+      gearId,
+    },
+
+    include: {
+      customer: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
+const getAllReviewsFromDB = async () => {
+  return prisma.review.findMany({
+    include: {
+      customer: true,
+      gear: true,
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
 
 const updateReviewIntoDB = async (
@@ -186,7 +240,10 @@ export const reviewService = {
   createReviewIntoDB,
   getMyReviewsFromDB,
   getGearReviewsFromDB,
+<<<<<<< HEAD
   getProviderReviewsFromDB,
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   getAllReviewsFromDB,
   updateReviewIntoDB,
   deleteReviewFromDB,

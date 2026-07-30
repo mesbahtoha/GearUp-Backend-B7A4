@@ -21,12 +21,15 @@ router.get(
 );
 
 router.get(
+<<<<<<< HEAD
   "/provider-reviews",
   auth(Role.PROVIDER),
   reviewController.getProviderReviews
 );
 
 router.get(
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   "/all",
   auth(Role.ADMIN),
   reviewController.getAllReviews

@@ -17,7 +17,10 @@ export type UserMinAggregateOutputType = {
     email: string | null;
     password: string | null;
     phone: string | null;
+<<<<<<< HEAD
     image: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: $Enums.Role | null;
     status: $Enums.UserStatus | null;
     createdAt: Date | null;
@@ -29,7 +32,10 @@ export type UserMaxAggregateOutputType = {
     email: string | null;
     password: string | null;
     phone: string | null;
+<<<<<<< HEAD
     image: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: $Enums.Role | null;
     status: $Enums.UserStatus | null;
     createdAt: Date | null;
@@ -41,7 +47,10 @@ export type UserCountAggregateOutputType = {
     email: number;
     password: number;
     phone: number;
+<<<<<<< HEAD
     image: number;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: number;
     status: number;
     createdAt: number;
@@ -54,7 +63,10 @@ export type UserMinAggregateInputType = {
     email?: true;
     password?: true;
     phone?: true;
+<<<<<<< HEAD
     image?: true;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: true;
     status?: true;
     createdAt?: true;
@@ -66,7 +78,10 @@ export type UserMaxAggregateInputType = {
     email?: true;
     password?: true;
     phone?: true;
+<<<<<<< HEAD
     image?: true;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: true;
     status?: true;
     createdAt?: true;
@@ -78,7 +93,10 @@ export type UserCountAggregateInputType = {
     email?: true;
     password?: true;
     phone?: true;
+<<<<<<< HEAD
     image?: true;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: true;
     status?: true;
     createdAt?: true;
@@ -153,7 +171,10 @@ export type UserGroupByOutputType = {
     email: string;
     password: string;
     phone: string | null;
+<<<<<<< HEAD
     image: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: $Enums.Role;
     status: $Enums.UserStatus;
     createdAt: Date;
@@ -174,7 +195,10 @@ export type UserWhereInput = {
     email?: Prisma.StringFilter<"User"> | string;
     password?: Prisma.StringFilter<"User"> | string;
     phone?: Prisma.StringNullableFilter<"User"> | string | null;
+<<<<<<< HEAD
     image?: Prisma.StringNullableFilter<"User"> | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
     status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
@@ -189,7 +213,10 @@ export type UserOrderByWithRelationInput = {
     email?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     phone?: Prisma.SortOrderInput | Prisma.SortOrder;
+<<<<<<< HEAD
     image?: Prisma.SortOrderInput | Prisma.SortOrder;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -207,7 +234,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
     name?: Prisma.StringFilter<"User"> | string;
     password?: Prisma.StringFilter<"User"> | string;
     phone?: Prisma.StringNullableFilter<"User"> | string | null;
+<<<<<<< HEAD
     image?: Prisma.StringNullableFilter<"User"> | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
     status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFilter<"User"> | Date | string;
@@ -222,7 +252,10 @@ export type UserOrderByWithAggregationInput = {
     email?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     phone?: Prisma.SortOrderInput | Prisma.SortOrder;
+<<<<<<< HEAD
     image?: Prisma.SortOrderInput | Prisma.SortOrder;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -240,7 +273,10 @@ export type UserScalarWhereWithAggregatesInput = {
     email?: Prisma.StringWithAggregatesFilter<"User"> | string;
     password?: Prisma.StringWithAggregatesFilter<"User"> | string;
     phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null;
+<<<<<<< HEAD
     image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role;
     status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string;
@@ -252,7 +288,10 @@ export type UserCreateInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -267,7 +306,10 @@ export type UserUncheckedCreateInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -282,7 +324,10 @@ export type UserUpdateInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -297,7 +342,10 @@ export type UserUncheckedUpdateInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -312,7 +360,10 @@ export type UserCreateManyInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -324,7 +375,10 @@ export type UserUpdateManyMutationInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -336,7 +390,10 @@ export type UserUncheckedUpdateManyInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -352,7 +409,10 @@ export type UserCountOrderByAggregateInput = {
     email?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     phone?: Prisma.SortOrder;
+<<<<<<< HEAD
     image?: Prisma.SortOrder;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -364,7 +424,10 @@ export type UserMaxOrderByAggregateInput = {
     email?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     phone?: Prisma.SortOrder;
+<<<<<<< HEAD
     image?: Prisma.SortOrder;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -376,7 +439,10 @@ export type UserMinOrderByAggregateInput = {
     email?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     phone?: Prisma.SortOrder;
+<<<<<<< HEAD
     image?: Prisma.SortOrder;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -430,7 +496,10 @@ export type UserCreateWithoutGearItemsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -444,7 +513,10 @@ export type UserUncheckedCreateWithoutGearItemsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -471,7 +543,10 @@ export type UserUpdateWithoutGearItemsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -485,7 +560,10 @@ export type UserUncheckedUpdateWithoutGearItemsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -499,7 +577,10 @@ export type UserCreateWithoutRentalsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -513,7 +594,10 @@ export type UserUncheckedCreateWithoutRentalsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -540,7 +624,10 @@ export type UserUpdateWithoutRentalsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -554,7 +641,10 @@ export type UserUncheckedUpdateWithoutRentalsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -568,7 +658,10 @@ export type UserCreateWithoutReviewsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -582,7 +675,10 @@ export type UserUncheckedCreateWithoutReviewsInput = {
     email: string;
     password: string;
     phone?: string | null;
+<<<<<<< HEAD
     image?: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: $Enums.Role;
     status?: $Enums.UserStatus;
     createdAt?: Date | string;
@@ -609,7 +705,10 @@ export type UserUpdateWithoutReviewsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -623,7 +722,10 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+<<<<<<< HEAD
     image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -677,7 +779,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     email?: boolean;
     password?: boolean;
     phone?: boolean;
+<<<<<<< HEAD
     image?: boolean;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: boolean;
     status?: boolean;
     createdAt?: boolean;
@@ -693,7 +798,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
     email?: boolean;
     password?: boolean;
     phone?: boolean;
+<<<<<<< HEAD
     image?: boolean;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: boolean;
     status?: boolean;
     createdAt?: boolean;
@@ -705,7 +813,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
     email?: boolean;
     password?: boolean;
     phone?: boolean;
+<<<<<<< HEAD
     image?: boolean;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: boolean;
     status?: boolean;
     createdAt?: boolean;
@@ -717,13 +828,20 @@ export type UserSelectScalar = {
     email?: boolean;
     password?: boolean;
     phone?: boolean;
+<<<<<<< HEAD
     image?: boolean;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role?: boolean;
     status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
 };
+<<<<<<< HEAD
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "image" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>;
+=======
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>;
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     gearItems?: boolean | Prisma.User$gearItemsArgs<ExtArgs>;
     rentals?: boolean | Prisma.User$rentalsArgs<ExtArgs>;
@@ -745,7 +863,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
         email: string;
         password: string;
         phone: string | null;
+<<<<<<< HEAD
         image: string | null;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
         role: $Enums.Role;
         status: $Enums.UserStatus;
         createdAt: Date;
@@ -1112,7 +1233,10 @@ export interface UserFieldRefs {
     readonly email: Prisma.FieldRef<"User", 'String'>;
     readonly password: Prisma.FieldRef<"User", 'String'>;
     readonly phone: Prisma.FieldRef<"User", 'String'>;
+<<<<<<< HEAD
     readonly image: Prisma.FieldRef<"User", 'String'>;
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     readonly role: Prisma.FieldRef<"User", 'Role'>;
     readonly status: Prisma.FieldRef<"User", 'UserStatus'>;
     readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>;

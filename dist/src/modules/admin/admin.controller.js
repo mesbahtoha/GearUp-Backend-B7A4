@@ -45,8 +45,12 @@ const getAllRentals = catchAsync(async (req, res) => {
         success: true,
         statusCode: httpStatus.OK,
         message: "Rentals retrieved successfully",
+<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
+=======
+        data: result,
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
 });
 const getAllPayments = catchAsync(async (req, res) => {
@@ -55,8 +59,12 @@ const getAllPayments = catchAsync(async (req, res) => {
         success: true,
         statusCode: httpStatus.OK,
         message: "Payments retrieved successfully",
+<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
+=======
+        data: result,
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
 });
 const getDashboardStats = catchAsync(async (req, res) => {
@@ -77,6 +85,7 @@ const deleteGear = catchAsync(async (req, res) => {
         data: null,
     });
 });
+<<<<<<< HEAD
 const toggleGearAvailability = catchAsync(async (req, res) => {
     const result = await adminService.toggleGearAvailabilityIntoDB(req.params.id);
     sendResponse(res, {
@@ -86,6 +95,8 @@ const toggleGearAvailability = catchAsync(async (req, res) => {
         data: result,
     });
 });
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 const changeUserRole = catchAsync(async (req, res) => {
     const result = await adminService.changeUserRoleIntoDB(req.params.id, req.body.role);
     sendResponse(res, {
@@ -104,7 +115,10 @@ export const adminController = {
     getAllPayments,
     getDashboardStats,
     deleteGear,
+<<<<<<< HEAD
     toggleGearAvailability,
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     changeUserRole,
 };
 //# sourceMappingURL=admin.controller.js.map

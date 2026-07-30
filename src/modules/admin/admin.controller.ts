@@ -86,8 +86,12 @@ const getAllRentals =
       success: true,
       statusCode: httpStatus.OK,
       message: "Rentals retrieved successfully",
+<<<<<<< HEAD
       data: result.data,
       meta: result.meta,
+=======
+      data: result,
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
   });
 
@@ -103,8 +107,12 @@ const getAllPayments =
       success: true,
       statusCode: httpStatus.OK,
       message: "Payments retrieved successfully",
+<<<<<<< HEAD
       data: result.data,
       meta: result.meta,
+=======
+      data: result,
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
   });
 
@@ -137,6 +145,7 @@ const deleteGear =
     });
   });
 
+<<<<<<< HEAD
 const toggleGearAvailability =
   catchAsync(async (req, res) => {
 
@@ -153,6 +162,8 @@ const toggleGearAvailability =
     });
   });
 
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 const changeUserRole =
   catchAsync(async (req, res) => {
 
@@ -179,6 +190,9 @@ export const adminController = {
   getAllPayments,
   getDashboardStats,
   deleteGear,
+<<<<<<< HEAD
   toggleGearAvailability,
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   changeUserRole,
 };

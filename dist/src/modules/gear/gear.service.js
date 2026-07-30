@@ -1,6 +1,9 @@
 import { prisma } from "../../lib/prisma";
+<<<<<<< HEAD
 import { RentalStatus } from "../../../generated/prisma/enums";
 import { getPagination, getPaginationMeta } from "../../utils/pagination";
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 const createGearIntoDB = async (providerId, payload) => {
     if (!payload.name?.trim()) {
         throw new Error("Gear name is required");
@@ -151,6 +154,7 @@ const getSingleGearFromDB = async (gearId) => {
     });
     return gear;
 };
+<<<<<<< HEAD
 const getMyGearsFromDB = async (providerId, query) => {
     const { page, limit, skip } = getPagination({ ...query, limit: query?.limit || 100 });
     const where = { providerId };
@@ -165,6 +169,21 @@ const getMyGearsFromDB = async (providerId, query) => {
         prisma.gearItem.count({ where }),
     ]);
     return { data: gears, meta: getPaginationMeta(page, limit, total) };
+=======
+const getMyGearsFromDB = async (providerId) => {
+    const gears = await prisma.gearItem.findMany({
+        where: {
+            providerId,
+        },
+        include: {
+            category: true,
+        },
+        orderBy: {
+            createdAt: "desc",
+        },
+    });
+    return gears;
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
 const updateGearIntoDB = async (gearId, providerId, payload) => {
     if (payload.pricePerDay !== undefined && payload.pricePerDay <= 0) {
@@ -191,11 +210,18 @@ const updateGearIntoDB = async (gearId, providerId, payload) => {
 };
 const deleteGearFromDB = async (gearId, providerId) => {
     const gear = await prisma.gearItem.findUniqueOrThrow({
+<<<<<<< HEAD
         where: { id: gearId },
+=======
+        where: {
+            id: gearId,
+        },
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
     if (gear.providerId !== providerId) {
         throw new Error("You can delete only your own gear");
     }
+<<<<<<< HEAD
     const activeRentals = await prisma.rentalOrder.findFirst({
         where: {
             gearId,
@@ -224,6 +250,13 @@ const deleteGearFromDB = async (gearId, providerId) => {
             where: { id: gearId },
         });
     });
+=======
+    await prisma.gearItem.delete({
+        where: {
+            id: gearId,
+        },
+    });
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     return null;
 };
 export const gearService = {

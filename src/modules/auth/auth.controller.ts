@@ -48,14 +48,19 @@ const refreshToken = catchAsync(
   async (req, res) => {
 
     const token =
+<<<<<<< HEAD
       req.cookies.refreshToken ||
       req.body?.refreshToken;
+=======
+      req.cookies.refreshToken;
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 
     const result =
       await authService.refreshToken(
         token
       );
 
+<<<<<<< HEAD
     res.cookie("accessToken", result.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -76,6 +81,8 @@ const refreshToken = catchAsync(
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
@@ -127,6 +134,7 @@ const changePassword =
     }
   );
 
+<<<<<<< HEAD
 const forgotPassword = catchAsync(
   async (req: Request, res: Response) => {
     const result = await authService.forgotPassword(req.body);
@@ -140,10 +148,16 @@ const forgotPassword = catchAsync(
   }
 );
 
+=======
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 export const authController = {
   loginUser,
   refreshToken,
   logout,
+<<<<<<< HEAD
   changePassword,
   forgotPassword,
+=======
+  changePassword
+>>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
