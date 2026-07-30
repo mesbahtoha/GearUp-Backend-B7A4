@@ -1,0 +1,826 @@
+{
+	"info": {
+		"_postman_id": "8fc079eb-c1be-4aa6-95fa-6193739cf6e7",
+		"name": "GearUp Backand Postman Collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "53823647",
+		"_collection_link": "https://mesbahulalam017-5145562.postman.co/workspace/Mesbahul-Alam's-Workspace~1e7a4dfd-00c7-4b89-8906-334123b9990e/collection/53823647-8fc079eb-c1be-4aa6-95fa-6193739cf6e7?action=share&source=collection_link&creator=53823647"
+	},
+	"item": [
+		{
+			"name": "Public Gear APIs",
+			"item": [
+				{
+					"name": "GET All Gears",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"gears"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Pagination)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?page=1&limit=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Search)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?search=tent",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "tent"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Gears (Price Filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears?minPrice=10&maxPrice=50",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"gears"
+							],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "10"
+								},
+								{
+									"key": "maxPrice",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single Gear",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/gears/1dac0e0c-90da-4b7e-be28-7a6aae829ad2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"gears",
+								"1dac0e0c-90da-4b7e-be28-7a6aae829ad2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Module",
+			"item": [
+				{
+					"name": "GET Dashboard Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/dashboard",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Rentals",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/rentals",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/payments",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suspend User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users/565b919b-3b41-40e2-87e9-64703cb5d4d8/suspend",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"565b919b-3b41-40e2-87e9-64703cb5d4d8",
+								"suspend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/users/565b919b-3b41-40e2-87e9-64703cb5d4d8/activate",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"565b919b-3b41-40e2-87e9-64703cb5d4d8",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suspend Gear (make isActive FALSE)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA3Mjk3LCJleHAiOjE3ODQwOTM2OTd9.vN9HJmmybz82M61NzWYxysj9rVh2WeM378hUrG_6ouE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/api/admin/gears/1dac0e0c-90da-4b7e-be28-7a6aae829ad2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"gears",
+								"1dac0e0c-90da-4b7e-be28-7a6aae829ad2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register Provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Outdoor Hub\",\n  \"email\": \"provider.outdoor@gmail.com\",\n  \"password\": \"Provider@123\",\n  \"phone\": \"01811111111\",\n  \"role\": \"PROVIDER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gearup-backend-b7a4.onrender.com/api/users/register",
+					"protocol": "https",
+					"host": [
+						"gearup-backend-b7a4",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Rahim Uddin\",\n  \"email\": \"customer.rahim@gmail.com\",\n  \"password\": \"Customer@123\",\n  \"phone\": \"01911111111\",\n  \"role\": \"CUSTOMER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gearup-backend-b7a4.onrender.com/api/users/register",
+					"protocol": "https",
+					"host": [
+						"gearup-backend-b7a4",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"provider.outdoor@gmail.com\",\n  \"password\": \"Provider@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category (Admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0OWIwMWRkLWFkMDYtNDBlOC1hODNkLTRjMDY2Y2I1MTlmNSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg0MDA0ODM3LCJleHAiOjE3ODQwOTEyMzd9.uFOtf37Eh4jiUHZGD8xc--8ohFygKlL_NUqjnOM5Ybk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Football\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Gear",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODM5NjE0ODgsImV4cCI6MTc4NDA0Nzg4OH0.P8cCYYDH90gvXhnuoH_ze3tKxtCbAwyP9jpX_k0VHXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Shoo\",\n  \"brand\": \"Nike\",\n  \"description\": \"5 Person Waterproof Tent\",\n  \"pricePerDay\": 25,\n  \"stock\": 10,\n  \"isAvailable\": true,\n  \"categoryId\": \"1411e910-b50d-4941-b275-61c34ec72d98\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/gears",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"gears"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider My Gears",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYwOTUsImV4cCI6MTc4NDA5MjQ5NX0.LfdRvyF7Om2_FXJSmGPRENzkuV0c9xXrbU7OMsZGvTM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/gears/my-gears",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"gears",
+						"my-gears"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"customer.rahim@gmail.com\",\n  \"password\": \"Customer@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rental",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"quantity\": 4,\n  \"startDate\": \"2026-07-20\",\n  \"endDate\": \"2026-07-25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer My Rentals",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2MTQ5LCJleHAiOjE3ODQwOTI1NDl9.x8LL3mDcIth-U5lz5EL8vaRwIFy0RBFRwa_HpXtEtXU",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/my-rentals",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"my-rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provider Orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYzNzYsImV4cCI6MTc4NDA5Mjc3Nn0.lMqGbrJ8Tq4bAWzVqnjjbjPidenyFqLFahxISGVr5Ko",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/provider-orders",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"provider-orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Rental",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDYzNzYsImV4cCI6MTc4NDA5Mjc3Nn0.lMqGbrJ8Tq4bAWzVqnjjbjPidenyFqLFahxISGVr5Ko",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/confirm",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment Intent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA2NTY1LCJleHAiOjE3ODQwOTI5NjV9.oRG9sehG56Xq_SCJV2VPP2P0R_OgsR6a_7f__hP09IA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/payments/checkout/e0d054fb-6af2-49ab-becc-d1559c0d6145",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"payments",
+						"checkout",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pick Up",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDY3ODgsImV4cCI6MTc4NDA5MzE4OH0.nViv4EnCf2_TD_uvv6R44QO7hfFuub311EVnTwM6nHk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/pickup",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
+						"pickup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1OTcwMGRjLTM3MzQtNGIxNy05ODhiLTFlYmJlMjA1NGVjOCIsImVtYWlsIjoicHJvdmlkZXIub3V0ZG9vckBnbWFpbC5jb20iLCJyb2xlIjoiUFJPVklERVIiLCJpYXQiOjE3ODQwMDY3ODgsImV4cCI6MTc4NDA5MzE4OH0.nViv4EnCf2_TD_uvv6R44QO7hfFuub311EVnTwM6nHk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/rentals/e0d054fb-6af2-49ab-becc-d1559c0d6145/return",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"rentals",
+						"e0d054fb-6af2-49ab-becc-d1559c0d6145",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU2NWI5MTliLTNiNDEtNDBlMi04N2U5LTY0NzAzY2I1ZDRkOCIsImVtYWlsIjoiY3VzdG9tZXIucmFoaW1AZ21haWwuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzg0MDA3MDI0LCJleHAiOjE3ODQwOTM0MjR9.-Rlq3I2hCmX7NhNItF4EXk9W3f8nL3GWlBqJ1tXd0nE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"gearId\": \"7959a6e4-8402-4d36-8a49-cfeee06e33fb\",\n  \"rating\": 5,\n  \"comment\": \"Excellent quality and condition.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews/my-reviews",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"my-reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gear Reviews",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/api/reviews/gear/7959a6e4-8402-4d36-8a49-cfeee06e33fb",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"reviews",
+						"gear",
+						"7959a6e4-8402-4d36-8a49-cfeee06e33fb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
