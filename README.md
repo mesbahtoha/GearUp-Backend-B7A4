@@ -483,6 +483,8 @@ ZIP: Any valid ZIP
 
 The complete Postman Collection is included with this project submission.
 
+Postman collections: https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
+
 Import the collection and environment file into Postman to test all endpoints.
 
 ---
