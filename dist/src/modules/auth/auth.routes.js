@@ -8,9 +8,6 @@ router.post("/login", authController.loginUser);
 router.post("/refresh-token", authController.refreshToken);
 router.post("/logout", authController.logout);
 router.patch("/change-password", auth(Role.ADMIN, Role.CUSTOMER, Role.PROVIDER), authController.changePassword);
-<<<<<<< HEAD
 router.post("/forgot-password", authController.forgotPassword);
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 export const authRoutes = router;
 //# sourceMappingURL=auth.routes.js.map

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 {"version":3,"file":"review.routes.d.ts","sourceRoot":"","sources":["../../../../src/modules/review/review.routes.ts"],"names":[],"mappings":"AAmDA,eAAO,MAAM,YAAY,4CACjB,CAAC"}
-=======
-{"version":3,"file":"review.routes.d.ts","sourceRoot":"","sources":["../../../../src/modules/review/review.routes.ts"],"names":[],"mappings":"AA6CA,eAAO,MAAM,YAAY,4CACjB,CAAC"}
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915

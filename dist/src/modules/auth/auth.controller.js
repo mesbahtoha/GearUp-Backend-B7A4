@@ -32,7 +32,6 @@ const loginUser = catchAsync(async (req, res) => {
     });
 });
 const refreshToken = catchAsync(async (req, res) => {
-<<<<<<< HEAD
     const token = req.cookies.refreshToken ||
         req.body?.refreshToken;
     const result = await authService.refreshToken(token);
@@ -52,10 +51,6 @@ const refreshToken = catchAsync(async (req, res) => {
             : "lax",
         maxAge: 1000 * 60 * 60 * 24 * 7,
     });
-=======
-    const token = req.cookies.refreshToken;
-    const result = await authService.refreshToken(token);
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
@@ -82,7 +77,6 @@ const changePassword = catchAsync(async (req, res) => {
         data: null,
     });
 });
-<<<<<<< HEAD
 const forgotPassword = catchAsync(async (req, res) => {
     const result = await authService.forgotPassword(req.body);
     sendResponse(res, {
@@ -92,17 +86,11 @@ const forgotPassword = catchAsync(async (req, res) => {
         data: null,
     });
 });
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 export const authController = {
     loginUser,
     refreshToken,
     logout,
-<<<<<<< HEAD
     changePassword,
     forgotPassword,
-=======
-    changePassword
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
 //# sourceMappingURL=auth.controller.js.map

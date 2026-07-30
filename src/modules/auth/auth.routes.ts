@@ -28,12 +28,9 @@ router.patch(
   authController.changePassword
 );
 
-<<<<<<< HEAD
 router.post(
   "/forgot-password",
   authController.forgotPassword
 );
 
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 export const authRoutes = router;

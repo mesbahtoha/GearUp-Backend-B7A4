@@ -1,4 +1,4 @@
-import cookieParser from "cookie-parser";
+﻿import cookieParser from "cookie-parser";
 import express, {
   Application,
   Request,
@@ -22,10 +22,7 @@ import { globalErrorHandler } from "./middlewares/errorHandler";
 import { reviewRoutes } from "./modules/review/review.routes";
 import { adminRoutes } from "./modules/admin/admin.routes";
 import { dashboardRoutes } from "./modules/dashboard/dashboard.routes";
-<<<<<<< HEAD
 import { uploadRoutes } from "./modules/upload/upload.routes";
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 
 const app: Application = express();
 
@@ -131,14 +128,11 @@ app.use(
   dashboardRoutes
 );
 
-<<<<<<< HEAD
 app.use(
   "/api/upload",
   uploadRoutes
 );
 
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 /*
 |--------------------------------------------------------------------------
 | 404 Route

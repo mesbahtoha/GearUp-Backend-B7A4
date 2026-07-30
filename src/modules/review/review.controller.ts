@@ -28,12 +28,8 @@ const getMyReviews =
   catchAsync(async (req, res) => {
     const result =
       await reviewService.getMyReviewsFromDB(
-<<<<<<< HEAD
         req.user!.id,
         req.query as { page?: number; limit?: number }
-=======
-        req.user!.id
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
       );
 
     sendResponse(res, {
@@ -42,12 +38,8 @@ const getMyReviews =
         httpStatus.OK,
       message:
         "My reviews retrieved successfully",
-<<<<<<< HEAD
       data: result.data,
       meta: result.meta,
-=======
-      data: result,
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
   });
 
@@ -55,12 +47,8 @@ const getGearReviews =
   catchAsync(async (req, res) => {
     const result =
       await reviewService.getGearReviewsFromDB(
-<<<<<<< HEAD
         req.params.gearId as string,
         req.query as { page?: number; limit?: number }
-=======
-        req.params.gearId as string
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
       );
 
     sendResponse(res, {
@@ -69,7 +57,6 @@ const getGearReviews =
         httpStatus.OK,
       message:
         "Gear reviews retrieved successfully",
-<<<<<<< HEAD
       data: result.data,
       meta: result.meta,
     });
@@ -91,22 +78,15 @@ const getProviderReviews =
         "Provider reviews retrieved successfully",
       data: result.data,
       meta: result.meta,
-=======
-      data: result,
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
   });
 
 const getAllReviews =
   catchAsync(async (req, res) => {
     const result =
-<<<<<<< HEAD
       await reviewService.getAllReviewsFromDB(
         req.query as { page?: number; limit?: number }
       );
-=======
-      await reviewService.getAllReviewsFromDB();
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 
     sendResponse(res, {
       success: true,
@@ -114,12 +94,8 @@ const getAllReviews =
         httpStatus.OK,
       message:
         "All reviews retrieved successfully",
-<<<<<<< HEAD
       data: result.data,
       meta: result.meta,
-=======
-      data: result,
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
   });
 
@@ -163,10 +139,7 @@ export const reviewController = {
   createReview,
   getMyReviews,
   getGearReviews,
-<<<<<<< HEAD
   getProviderReviews,
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   getAllReviews,
   updateReview,
   deleteReview,

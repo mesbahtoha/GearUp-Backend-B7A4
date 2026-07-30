@@ -1,10 +1,7 @@
-import { prisma } from "../../lib/prisma";
+﻿import { prisma } from "../../lib/prisma";
 import { ICreateGear, IGetAllGearQuery, IUpdateGear } from "./gear.interface";
-<<<<<<< HEAD
 import { RentalStatus } from "../../../generated/prisma/enums";
 import { getPagination, getPaginationMeta } from "../../utils/pagination";
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 
 const createGearIntoDB = async (providerId: string, payload: ICreateGear) => {
   if (!payload.name?.trim()) {
@@ -193,7 +190,6 @@ const getSingleGearFromDB = async (gearId: string) => {
   return gear;
 };
 
-<<<<<<< HEAD
 const getMyGearsFromDB = async (providerId: string, query?: { page?: number; limit?: number }) => {
   const { page, limit, skip } = getPagination({ ...query, limit: query?.limit || 100 });
   const where = { providerId };
@@ -208,24 +204,6 @@ const getMyGearsFromDB = async (providerId: string, query?: { page?: number; lim
     prisma.gearItem.count({ where }),
   ]);
   return { data: gears, meta: getPaginationMeta(page, limit, total) };
-=======
-const getMyGearsFromDB = async (providerId: string) => {
-  const gears = await prisma.gearItem.findMany({
-    where: {
-      providerId,
-    },
-
-    include: {
-      category: true,
-    },
-
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  return gears;
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
 
 const updateGearIntoDB = async (
@@ -264,20 +242,13 @@ const updateGearIntoDB = async (
 
 const deleteGearFromDB = async (gearId: string, providerId: string) => {
   const gear = await prisma.gearItem.findUniqueOrThrow({
-<<<<<<< HEAD
     where: { id: gearId },
-=======
-    where: {
-      id: gearId,
-    },
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   });
 
   if (gear.providerId !== providerId) {
     throw new Error("You can delete only your own gear");
   }
 
-<<<<<<< HEAD
   const activeRentals = await prisma.rentalOrder.findFirst({
     where: {
       gearId,
@@ -311,14 +282,6 @@ const deleteGearFromDB = async (gearId: string, providerId: string) => {
     });
   });
 
-=======
-  await prisma.gearItem.delete({
-    where: {
-      id: gearId,
-    },
-  });
-
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
   return null;
 };
 

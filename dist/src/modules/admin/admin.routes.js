@@ -11,10 +11,7 @@ router.get("/rentals", auth(Role.ADMIN), adminController.getAllRentals);
 router.get("/payments", auth(Role.ADMIN), adminController.getAllPayments);
 router.get("/dashboard", auth(Role.ADMIN), adminController.getDashboardStats);
 router.delete("/gears/:id", auth(Role.ADMIN), adminController.deleteGear);
-<<<<<<< HEAD
 router.patch("/gears/:id/availability", auth(Role.ADMIN), adminController.toggleGearAvailability);
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 router.patch("/users/:id/role", auth(Role.ADMIN), adminController.changeUserRole);
 export const adminRoutes = router;
 //# sourceMappingURL=admin.routes.js.map

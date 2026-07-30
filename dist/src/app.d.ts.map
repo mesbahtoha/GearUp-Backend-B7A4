@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 {"version":3,"file":"app.d.ts","sourceRoot":"","sources":["../../src/app.ts"],"names":[],"mappings":"AACA,OAAgB,EACd,WAAW,EAGZ,MAAM,SAAS,CAAC;AAqBjB,QAAA,MAAM,GAAG,EAAE,WAAuB,CAAC;eAmIpB,GAAG"}
-=======
-{"version":3,"file":"app.d.ts","sourceRoot":"","sources":["../../src/app.ts"],"names":[],"mappings":"AACA,OAAgB,EACd,WAAW,EAGZ,MAAM,SAAS,CAAC;AAoBjB,QAAA,MAAM,GAAG,EAAE,WAAuB,CAAC;eA8HpB,GAAG"}
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915

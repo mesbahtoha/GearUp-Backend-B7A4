@@ -41,10 +41,7 @@ declare const getAllGearsFromDB: (query: IGetAllGearQuery) => Promise<{
             name: string;
             email: string;
             phone: string | null;
-<<<<<<< HEAD
             image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
             role: import("../../../generated/prisma/enums").Role;
             status: import("../../../generated/prisma/enums").UserStatus;
             createdAt: Date;
@@ -92,7 +89,6 @@ declare const getSingleGearFromDB: (gearId: string) => Promise<{
     providerId: string;
     categoryId: string;
 }>;
-<<<<<<< HEAD
 declare const getMyGearsFromDB: (providerId: string, query?: {
     page?: number;
     limit?: number;
@@ -121,30 +117,6 @@ declare const getMyGearsFromDB: (providerId: string, query?: {
     })[];
     meta: import("../../utils/pagination").PaginationMeta;
 }>;
-=======
-declare const getMyGearsFromDB: (providerId: string) => Promise<({
-    category: {
-        id: string;
-        name: string;
-        description: string | null;
-        createdAt: Date;
-        updatedAt: Date;
-    };
-} & {
-    id: string;
-    name: string;
-    description: string;
-    brand: string;
-    image: string | null;
-    pricePerDay: number;
-    stock: number;
-    isAvailable: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    providerId: string;
-    categoryId: string;
-})[]>;
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 declare const updateGearIntoDB: (gearId: string, providerId: string, payload: IUpdateGear) => Promise<{
     id: string;
     name: string;

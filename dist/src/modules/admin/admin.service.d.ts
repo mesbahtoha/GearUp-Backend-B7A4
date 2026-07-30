@@ -10,10 +10,7 @@ declare const getAllUsersFromDB: (query: any) => Promise<{
         name: string;
         email: string;
         phone: string | null;
-<<<<<<< HEAD
         image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
         role: import("../../../generated/prisma/enums").Role;
         status: import("../../../generated/prisma/enums").UserStatus;
         createdAt: Date;
@@ -25,10 +22,7 @@ declare const getSingleUserFromDB: (userId: string) => Promise<{
     name: string;
     email: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -40,10 +34,7 @@ declare const suspendUserIntoDB: (adminId: string, userId: string) => Promise<{
     email: string;
     password: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -55,10 +46,7 @@ declare const activateUserIntoDB: (userId: string) => Promise<{
     email: string;
     password: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -78,10 +66,7 @@ declare const getAllRentalsFromDB: (query: any) => Promise<{
             email: string;
             password: string;
             phone: string | null;
-<<<<<<< HEAD
             image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
             role: import("../../../generated/prisma/enums").Role;
             status: import("../../../generated/prisma/enums").UserStatus;
             createdAt: Date;
@@ -171,12 +156,8 @@ declare const getDashboardStatsFromDB: () => Promise<{
     totalPayments: number;
     totalRevenue: number;
 }>;
-<<<<<<< HEAD
 declare const deleteGearFromDB: (gearId: string) => Promise<void>;
 declare const toggleGearAvailabilityIntoDB: (gearId: string) => Promise<{
-=======
-declare const deleteGearFromDB: (gearId: string) => Promise<{
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     id: string;
     name: string;
     description: string;
@@ -195,10 +176,7 @@ declare const changeUserRoleIntoDB: (userId: string, role: "CUSTOMER" | "PROVIDE
     name: string;
     email: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -213,10 +191,7 @@ export declare const adminService: {
     getAllPaymentsFromDB: typeof getAllPaymentsFromDB;
     getDashboardStatsFromDB: typeof getDashboardStatsFromDB;
     deleteGearFromDB: typeof deleteGearFromDB;
-<<<<<<< HEAD
     toggleGearAvailabilityIntoDB: typeof toggleGearAvailabilityIntoDB;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     changeUserRoleIntoDB: typeof changeUserRoleIntoDB;
 };
 export {};

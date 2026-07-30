@@ -31,21 +31,13 @@ const getSingleGear = catchAsync(async (req, res) => {
     });
 });
 const getMyGears = catchAsync(async (req, res) => {
-<<<<<<< HEAD
     const result = await gearService.getMyGearsFromDB(req.user.id, req.query);
-=======
-    const result = await gearService.getMyGearsFromDB(req.user.id);
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "My gears retrieved successfully",
-<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
-=======
-        data: result,
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
 });
 const updateGear = catchAsync(async (req, res) => {

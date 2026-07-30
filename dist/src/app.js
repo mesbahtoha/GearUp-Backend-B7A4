@@ -13,10 +13,7 @@ import { globalErrorHandler } from "./middlewares/errorHandler";
 import { reviewRoutes } from "./modules/review/review.routes";
 import { adminRoutes } from "./modules/admin/admin.routes";
 import { dashboardRoutes } from "./modules/dashboard/dashboard.routes";
-<<<<<<< HEAD
 import { uploadRoutes } from "./modules/upload/upload.routes";
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 const app = express();
 app.use(cors({
     origin: config.app_url,
@@ -60,10 +57,7 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-<<<<<<< HEAD
 app.use("/api/upload", uploadRoutes);
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 /*
 |--------------------------------------------------------------------------
 | 404 Route

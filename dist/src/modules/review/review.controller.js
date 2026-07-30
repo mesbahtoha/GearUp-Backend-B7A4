@@ -12,34 +12,21 @@ const createReview = catchAsync(async (req, res) => {
     });
 });
 const getMyReviews = catchAsync(async (req, res) => {
-<<<<<<< HEAD
     const result = await reviewService.getMyReviewsFromDB(req.user.id, req.query);
-=======
-    const result = await reviewService.getMyReviewsFromDB(req.user.id);
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "My reviews retrieved successfully",
-<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
     });
 });
 const getGearReviews = catchAsync(async (req, res) => {
     const result = await reviewService.getGearReviewsFromDB(req.params.gearId, req.query);
-=======
-        data: result,
-    });
-});
-const getGearReviews = catchAsync(async (req, res) => {
-    const result = await reviewService.getGearReviewsFromDB(req.params.gearId);
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "Gear reviews retrieved successfully",
-<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
     });
@@ -56,23 +43,12 @@ const getProviderReviews = catchAsync(async (req, res) => {
 });
 const getAllReviews = catchAsync(async (req, res) => {
     const result = await reviewService.getAllReviewsFromDB(req.query);
-=======
-        data: result,
-    });
-});
-const getAllReviews = catchAsync(async (req, res) => {
-    const result = await reviewService.getAllReviewsFromDB();
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "All reviews retrieved successfully",
-<<<<<<< HEAD
         data: result.data,
         meta: result.meta,
-=======
-        data: result,
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     });
 });
 const updateReview = catchAsync(async (req, res) => {
@@ -97,10 +73,7 @@ export const reviewController = {
     createReview,
     getMyReviews,
     getGearReviews,
-<<<<<<< HEAD
     getProviderReviews,
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     getAllReviews,
     updateReview,
     deleteReview,

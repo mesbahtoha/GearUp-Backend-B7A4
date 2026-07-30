@@ -4,10 +4,7 @@ declare const registerUserIntoDB: (payload: RegisterUserPayload) => Promise<{
     name: string;
     email: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -18,10 +15,7 @@ declare const getMyProfileFromDB: (userId: string) => Promise<{
     name: string;
     email: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -32,7 +26,6 @@ declare const updateMyProfileInDB: (userId: string, payload: UpdateProfilePayloa
     name: string;
     email: string;
     phone: string | null;
-<<<<<<< HEAD
     image: string | null;
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
@@ -45,8 +38,6 @@ declare const updateProfileImageInDB: (userId: string, buffer: Buffer, mimetype:
     email: string;
     phone: string | null;
     image: string | null;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
     role: import("../../../generated/prisma/enums").Role;
     status: import("../../../generated/prisma/enums").UserStatus;
     createdAt: Date;
@@ -56,10 +47,7 @@ export declare const userService: {
     registerUserIntoDB: typeof registerUserIntoDB;
     getMyProfileFromDB: typeof getMyProfileFromDB;
     updateMyProfileInDB: typeof updateMyProfileInDB;
-<<<<<<< HEAD
     updateProfileImageInDB: typeof updateProfileImageInDB;
-=======
->>>>>>> 6f00a62e9c1f7f112da4c8782e8bc648baeb8915
 };
 export {};
 //# sourceMappingURL=user.service.d.ts.map
