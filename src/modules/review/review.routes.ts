@@ -45,7 +45,7 @@ router.patch(
 
 router.delete(
   "/:id",
-  auth(Role.CUSTOMER),
+  auth(Role.CUSTOMER, Role.ADMIN),
   reviewController.deleteReview
 );
 

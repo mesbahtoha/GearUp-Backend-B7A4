@@ -162,14 +162,14 @@ const updateReviewIntoDB = async (
   });
 };
 
-const deleteReviewFromDB = async (reviewId: string, customerId: string) => {
+const deleteReviewFromDB = async (reviewId: string, customerId: string, isAdmin = false) => {
   const review = await prisma.review.findUniqueOrThrow({
     where: {
       id: reviewId,
     },
   });
 
-  if (review.customerId !== customerId) {
+  if (!isAdmin && review.customerId !== customerId) {
     throw new Error("You can delete only your own review");
   }
 

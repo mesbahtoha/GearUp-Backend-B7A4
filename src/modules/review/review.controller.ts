@@ -122,7 +122,8 @@ const deleteReview =
   catchAsync(async (req, res) => {
     await reviewService.deleteReviewFromDB(
       req.params.id as string,
-      req.user!.id
+      req.user!.id,
+      req.user!.role === "ADMIN"
     );
 
     sendResponse(res, {
