@@ -14,13 +14,15 @@ Health Check: `GET /api/health`
 
 ---
 
-## Demo Credentials
+## Authentication
 
-| Role | Email | Password |
-|------|-------|----------|
-| **Customer** | toha@gmail.com | toha123 |
-| **Provider** | provider@gmail.com | provider123 |
-| **Admin** | admin@gmail.com | admin123 |
+The API authenticates **registered users only**:
+
+- **Register** an account with name, email, and password (`POST /api/users/register`)
+- **Login** with your registered email & password (`POST /api/auth/login`)
+- **Sign in with Google OAuth** (`GET /api/auth/google`)
+
+There are **no demo accounts** or demo login endpoints.
 
 ---
 
@@ -157,6 +159,14 @@ CLIENT_URL=http://localhost:3000
 
 BCRYPT_SALT_ROUNDS=10
 
+# Seed users (optional — no default accounts are created without these)
+SEED_ADMIN_EMAIL=admin@example.com
+SEED_ADMIN_PASSWORD=your-strong-admin-password
+SEED_PROVIDER_EMAIL=provider@example.com
+SEED_PROVIDER_PASSWORD=your-strong-provider-password
+SEED_CUSTOMER_EMAIL=customer@example.com
+SEED_CUSTOMER_PASSWORD=your-strong-customer-password
+
 JWT_ACCESS_SECRET=your_access_secret
 JWT_REFRESH_SECRET=your_refresh_secret
 
@@ -194,6 +204,8 @@ Seed Database:
 ```bash
 npm run prisma db seed
 ```
+
+> **Note:** The seed creates accounts **only** for the `SEED_*` environment variables that are set with both an email and a password. Sample categories, gear items, rentals, and reviews are seeded when a provider/customer user is configured. No hardcoded demo accounts are ever created.
 
 ---
 
@@ -244,9 +256,10 @@ GET /api/auth/google/callback
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/login` | Login with email & password |
+| POST | `/api/auth/login` | Login with registered email & password |
 | POST | `/api/auth/refresh-token` | Refresh access token |
 | POST | `/api/auth/change-password` | Change password |
+| POST | `/api/auth/forgot-password` | Reset password |
 | GET | `/api/auth/google` | Start Google OAuth flow |
 | GET | `/api/auth/google/callback` | Google OAuth callback |
 | GET | `/api/health` | Health check |

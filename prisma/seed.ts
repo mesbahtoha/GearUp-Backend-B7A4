@@ -16,29 +16,37 @@ const prisma = new PrismaClient({
 
 const SALT_ROUNDS = 10;
 
-const DEMO_USERS = [
+interface SeedUser {
+  name: string;
+  email: string;
+  password: string;
+  role: Role;
+  phone?: string;
+}
+
+const SEED_USERS: SeedUser[] = [
   {
-    email: "admin@gmail.com",
-    password: "admin123",
-    name: "System Admin",
+    email: process.env.SEED_ADMIN_EMAIL || "",
+    password: process.env.SEED_ADMIN_PASSWORD || "",
+    name: process.env.SEED_ADMIN_NAME || "System Admin",
     role: Role.ADMIN,
-    phone: "01700000001",
+    phone: process.env.SEED_ADMIN_PHONE || "",
   },
   {
-    email: "provider@gmail.com",
-    password: "provider123",
-    name: "Alex Provider",
+    email: process.env.SEED_PROVIDER_EMAIL || "",
+    password: process.env.SEED_PROVIDER_PASSWORD || "",
+    name: process.env.SEED_PROVIDER_NAME || "Alex Provider",
     role: Role.PROVIDER,
-    phone: "01700000002",
+    phone: process.env.SEED_PROVIDER_PHONE || "",
   },
   {
-    email: "toha@gmail.com",
-    password: "toha123",
-    name: "Sam Customer",
+    email: process.env.SEED_CUSTOMER_EMAIL || "",
+    password: process.env.SEED_CUSTOMER_PASSWORD || "",
+    name: process.env.SEED_CUSTOMER_NAME || "Sam Customer",
     role: Role.CUSTOMER,
-    phone: "01700000003",
+    phone: process.env.SEED_CUSTOMER_PHONE || "",
   },
-];
+].filter((user) => user.email && user.password);
 
 const CATEGORIES = [
   { name: "Camping & Hiking", description: "Tents, sleeping bags, backpacks and hiking essentials" },
@@ -163,27 +171,27 @@ const GEARS = [
 async function main() {
   console.log("🌱 Seeding GearUp database...");
 
-  // 1. Demo users
+  // 1. Seed users (from environment variables, no hardcoded accounts)
   const userIds: Record<string, string> = {};
-  for (const demo of DEMO_USERS) {
-    const existing = await prisma.user.findUnique({ where: { email: demo.email } });
+  for (const seedUser of SEED_USERS) {
+    const existing = await prisma.user.findUnique({ where: { email: seedUser.email } });
     if (existing) {
-      userIds[demo.role] = existing.id;
-      console.log(`ℹ️ User exists: ${demo.email}`);
+      userIds[seedUser.role] = existing.id;
+      console.log(`ℹ️ User exists: ${seedUser.email}`);
       continue;
     }
-    const hashedPassword = await bcrypt.hash(demo.password, SALT_ROUNDS);
+    const hashedPassword = await bcrypt.hash(seedUser.password, SALT_ROUNDS);
     const user = await prisma.user.create({
       data: {
-        name: demo.name,
-        email: demo.email,
-        phone: demo.phone,
+        name: seedUser.name,
+        email: seedUser.email,
+        phone: seedUser.phone || null,
         password: hashedPassword,
-        role: demo.role,
+        role: seedUser.role,
       },
     });
-    userIds[demo.role] = user.id;
-    console.log(`✅ Created user: ${demo.email} (${demo.role})`);
+    userIds[seedUser.role] = user.id;
+    console.log(`✅ Created user: ${seedUser.email} (${seedUser.role})`);
   }
 
   // 2. Categories
@@ -199,156 +207,162 @@ async function main() {
     categoryIds[cat.name] = category.id;
   }
 
-  // 3. Gear items (assigned to demo provider)
+  // 3. Gear items (assigned to the seeded provider)
   const providerId = userIds[Role.PROVIDER];
   const gearIds: string[] = [];
-  for (const gear of GEARS) {
-    const categoryId = categoryIds[gear.category];
-    const existing = await prisma.gearItem.findFirst({
-      where: { name: gear.name, providerId },
-    });
-    if (existing) {
-      gearIds.push(existing.id);
-      continue;
-    }
-    const created = await prisma.gearItem.create({
-      data: {
-        name: gear.name,
-        brand: gear.brand,
-        description: gear.description,
-        image: gear.image,
-        pricePerDay: gear.pricePerDay,
-        stock: gear.stock,
-        categoryId,
-        providerId,
-      },
-    });
-    gearIds.push(created.id);
-    console.log(`✅ Created gear: ${gear.name}`);
-  }
-
-  // 4. Sample rentals (only if none exist for the demo customer)
-  const customerId = userIds[Role.CUSTOMER];
-  const existingRentals = await prisma.rentalOrder.count({ where: { customerId } });
-  if (existingRentals === 0 && gearIds.length >= 3) {
-    const today = new Date();
-    const daysFromNow = (days: number) => {
-      const d = new Date(today);
-      d.setDate(d.getDate() + days);
-      return d.toISOString().slice(0, 10);
-    };
-
-    const rentalSpecs = [
-      {
-        gearId: gearIds[0],
-        status: RentalStatus.RETURNED,
-        start: -30,
-        end: -27,
-        quantity: 1,
-        paid: true,
-      },
-      {
-        gearId: gearIds[2],
-        status: RentalStatus.RETURNED,
-        start: -21,
-        end: -18,
-        quantity: 2,
-        paid: true,
-      },
-      {
-        gearId: gearIds[4],
-        status: RentalStatus.PLACED,
-        start: 2,
-        end: 5,
-        quantity: 1,
-        paid: false,
-      },
-      {
-        gearId: gearIds[6],
-        status: RentalStatus.CONFIRMED,
-        start: 3,
-        end: 6,
-        quantity: 1,
-        paid: false,
-      },
-      {
-        gearId: gearIds[8],
-        status: RentalStatus.PAID,
-        start: 1,
-        end: 4,
-        quantity: 1,
-        paid: true,
-      },
-    ];
-
-    for (const spec of rentalSpecs) {
-      const startDate = new Date(daysFromNow(spec.start));
-      const endDate = new Date(daysFromNow(spec.end));
-      const gear = await prisma.gearItem.findUnique({ where: { id: spec.gearId } });
-      if (!gear) continue;
-      const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-      const totalPrice = gear.pricePerDay * spec.quantity * days;
-
-      const rental = await prisma.rentalOrder.create({
+  if (providerId) {
+    for (const gear of GEARS) {
+      const categoryId = categoryIds[gear.category];
+      const existing = await prisma.gearItem.findFirst({
+        where: { name: gear.name, providerId },
+      });
+      if (existing) {
+        gearIds.push(existing.id);
+        continue;
+      }
+      const created = await prisma.gearItem.create({
         data: {
-          quantity: spec.quantity,
-          startDate,
-          endDate,
-          totalPrice,
-          status: spec.status,
-          customerId,
-          gearId: spec.gearId,
-          payment: spec.paid
-            ? {
-                create: {
-                  amount: totalPrice,
-                  provider: "STRIPE",
-                  status: PaymentStatus.COMPLETED,
-                  transactionId: `ch_demo_${cryptoRandom(12)}`,
-                  paidAt: startDate,
-                },
-              }
-            : undefined,
+          name: gear.name,
+          brand: gear.brand,
+          description: gear.description,
+          image: gear.image,
+          pricePerDay: gear.pricePerDay,
+          stock: gear.stock,
+          categoryId,
+          providerId,
         },
       });
-      console.log(`✅ Created rental: ${spec.status} - ${gear.name}`);
+      gearIds.push(created.id);
+      console.log(`✅ Created gear: ${gear.name}`);
     }
   } else {
-    console.log("ℹ️ Rentals already seeded, skipping");
+    console.log("ℹ️ No SEED_PROVIDER_* configured, skipping gear items");
+  }
+
+  // 4. Sample rentals (only if none exist for the seeded customer)
+  const customerId = userIds[Role.CUSTOMER];
+  if (customerId && gearIds.length >= 3) {
+    const existingRentals = await prisma.rentalOrder.count({ where: { customerId } });
+    if (existingRentals === 0) {
+      const today = new Date();
+      const daysFromNow = (days: number) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() + days);
+        return d.toISOString().slice(0, 10);
+      };
+
+      const rentalSpecs = [
+        {
+          gearId: gearIds[0],
+          status: RentalStatus.RETURNED,
+          start: -30,
+          end: -27,
+          quantity: 1,
+          paid: true,
+        },
+        {
+          gearId: gearIds[2],
+          status: RentalStatus.RETURNED,
+          start: -21,
+          end: -18,
+          quantity: 2,
+          paid: true,
+        },
+        {
+          gearId: gearIds[4],
+          status: RentalStatus.PLACED,
+          start: 2,
+          end: 5,
+          quantity: 1,
+          paid: false,
+        },
+        {
+          gearId: gearIds[6],
+          status: RentalStatus.CONFIRMED,
+          start: 3,
+          end: 6,
+          quantity: 1,
+          paid: false,
+        },
+        {
+          gearId: gearIds[8],
+          status: RentalStatus.PAID,
+          start: 1,
+          end: 4,
+          quantity: 1,
+          paid: true,
+        },
+      ];
+
+      for (const spec of rentalSpecs) {
+        const startDate = new Date(daysFromNow(spec.start));
+        const endDate = new Date(daysFromNow(spec.end));
+        const gear = await prisma.gearItem.findUnique({ where: { id: spec.gearId } });
+        if (!gear) continue;
+        const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const totalPrice = gear.pricePerDay * spec.quantity * days;
+
+        await prisma.rentalOrder.create({
+          data: {
+            quantity: spec.quantity,
+            startDate,
+            endDate,
+            totalPrice,
+            status: spec.status,
+            customerId,
+            gearId: spec.gearId,
+            payment: spec.paid
+              ? {
+                  create: {
+                    amount: totalPrice,
+                    provider: "STRIPE",
+                    status: PaymentStatus.COMPLETED,
+                    transactionId: `ch_seed_${cryptoRandom(12)}`,
+                    paidAt: startDate,
+                  },
+                }
+              : undefined,
+          },
+        });
+        console.log(`✅ Created rental: ${spec.status} - ${gear.name}`);
+      }
+    } else {
+      console.log("ℹ️ Rentals already seeded, skipping");
+    }
+  } else {
+    console.log("ℹ️ Skipping sample rentals (no seeded customer or not enough gear)");
   }
 
   // 5. Sample reviews (only if none exist)
-  const existingReviews = await prisma.review.count({ where: { customerId } });
-  if (existingReviews === 0 && gearIds.length >= 3) {
-    const reviews = [
-      { gearId: gearIds[0], rating: 5, comment: "Excellent tent! Easy to set up and stayed dry through heavy rain." },
-      { gearId: gearIds[2], rating: 4, comment: "Great bike, smooth gears and comfortable on trails." },
-      { gearId: gearIds[4], rating: 5, comment: "The kayak was amazing! Perfect for a weekend lake trip." },
-      { gearId: gearIds[8], rating: 4, comment: "Quality ball, perfect grip. Would rent again." },
-    ];
+  if (customerId && gearIds.length >= 3) {
+    const existingReviews = await prisma.review.count({ where: { customerId } });
+    if (existingReviews === 0) {
+      const reviews = [
+        { gearId: gearIds[0], rating: 5, comment: "Excellent tent! Easy to set up and stayed dry through heavy rain." },
+        { gearId: gearIds[2], rating: 4, comment: "Great bike, smooth gears and comfortable on trails." },
+        { gearId: gearIds[4], rating: 5, comment: "The kayak was amazing! Perfect for a weekend lake trip." },
+        { gearId: gearIds[8], rating: 4, comment: "Quality ball, perfect grip. Would rent again." },
+      ];
 
-    for (const review of reviews) {
-      await prisma.review.create({
-        data: {
-          rating: review.rating,
-          comment: review.comment,
-          customerId,
-          gearId: review.gearId,
-        },
-      });
-      console.log(`✅ Created review (${review.rating}/5) for gear ${review.gearId.slice(0, 8)}`);
+      for (const review of reviews) {
+        await prisma.review.create({
+          data: {
+            rating: review.rating,
+            comment: review.comment,
+            customerId,
+            gearId: review.gearId,
+          },
+        });
+        console.log(`✅ Created review (${review.rating}/5) for gear ${review.gearId.slice(0, 8)}`);
+      }
+    } else {
+      console.log("ℹ️ Reviews already seeded, skipping");
     }
   } else {
-    console.log("ℹ️ Reviews already seeded, skipping");
+    console.log("ℹ️ Skipping sample reviews (no seeded customer or not enough gear)");
   }
 
   console.log("🎉 Seeding complete!");
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("🔑 Demo Credentials");
-  console.log("  Admin    → admin@gmail.com    / admin123");
-  console.log("  Provider → provider@gmail.com / provider123");
-  console.log("  Customer → toha@gmail.com     / toha123");
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 }
 
 function cryptoRandom(length: number) {
