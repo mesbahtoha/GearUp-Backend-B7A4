@@ -6,24 +6,6 @@ import { AppError } from "../../utils/AppError";
 import config from "../../config";
 import { googleAuthService } from "./googleAuth.service";
 
-const setAuthCookies = (res: Response, accessToken: string, refreshToken: string) => {
-  const isProd = process.env.NODE_ENV === "production";
-
-  res.cookie("accessToken", accessToken, {
-    httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
-    maxAge: 1000 * 60 * 60 * 24,
-  });
-
-  res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  });
-};
-
 const redirectToGoogle = catchAsync(async (req: Request, res: Response) => {
   if (!googleAuthService.isConfigured()) {
     throw new AppError(
@@ -75,12 +57,12 @@ const googleCallback = catchAsync(async (req: Request, res: Response) => {
     picture: profile.picture,
   });
 
-  setAuthCookies(res, tokens.accessToken, tokens.refreshToken);
+  const fragment =
+    `#accessToken=${encodeURIComponent(tokens.accessToken)}` +
+    `&refreshToken=${encodeURIComponent(tokens.refreshToken)}` +
+    `&role=${tokens.role}`;
 
-  const dashboardPath =
-    tokens.role === "ADMIN" ? "/dashboard/admin" : tokens.role === "PROVIDER" ? "/dashboard/provider" : "/dashboard/customer";
-
-  res.redirect(`${config.client_url}${dashboardPath}`);
+  res.redirect(`${config.client_url}/auth/oauth-callback${fragment}`);
 });
 
 export const googleAuthController = {
