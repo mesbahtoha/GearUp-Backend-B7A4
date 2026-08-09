@@ -3,6 +3,7 @@ import httpStatus from "http-status-codes";
 
 import { catchAsync } from "../../utils/catchAsync";
 import { AppError } from "../../utils/AppError";
+import config from "../../config";
 import { googleAuthService } from "./googleAuth.service";
 
 const setAuthCookies = (res: Response, accessToken: string, refreshToken: string) => {
@@ -79,7 +80,7 @@ const googleCallback = catchAsync(async (req: Request, res: Response) => {
   const dashboardPath =
     tokens.role === "ADMIN" ? "/dashboard/admin" : tokens.role === "PROVIDER" ? "/dashboard/provider" : "/dashboard/customer";
 
-  res.redirect(`${process.env.CLIENT_URL || "http://localhost:3000"}${dashboardPath}`);
+  res.redirect(`${config.client_url}${dashboardPath}`);
 });
 
 export const googleAuthController = {
