@@ -1,4 +1,6 @@
 import { prisma } from "../../lib/prisma";
+import { AppError } from "../../utils/AppError";
+import httpStatus from "http-status-codes";
 import {
   ICreateCategory,
   IUpdateCategory,
@@ -10,7 +12,7 @@ const createCategoryIntoDB = async (
 ) => {
   
   if (!payload.name) {
-  throw new Error(
+  throw new AppError(httpStatus.BAD_REQUEST, 
     "Category name is required"
   );
 }
@@ -23,7 +25,7 @@ const createCategoryIntoDB = async (
     });
 
   if (existingCategory) {
-    throw new Error(
+    throw new AppError(httpStatus.BAD_REQUEST, 
       "Category already exists"
     );
   }
@@ -83,7 +85,7 @@ const deleteCategoryFromDB = async (
   });
 
   if (gearCount > 0) {
-    throw new Error(
+    throw new AppError(httpStatus.BAD_REQUEST, 
       `Cannot delete category: ${gearCount} gear item(s) are using it. Reassign them first.`
     );
   }

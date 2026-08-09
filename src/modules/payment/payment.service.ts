@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 import config from "../../config";
 import { prisma } from "../../lib/prisma";
+import { AppError } from "../../utils/AppError";
+import httpStatus from "http-status-codes";
 
 const stripe = new Stripe(
   config.stripe_secret_key
@@ -26,7 +28,7 @@ const createCheckoutSession =
       rental.customerId !==
       customerId
     ) {
-      throw new Error(
+      throw new AppError(httpStatus.BAD_REQUEST, 
         "Unauthorized rental"
       );
     }
@@ -35,7 +37,7 @@ const createCheckoutSession =
       rental.status !==
       "CONFIRMED"
     ) {
-      throw new Error(
+      throw new AppError(httpStatus.BAD_REQUEST, 
         "Rental must be confirmed first"
       );
     }

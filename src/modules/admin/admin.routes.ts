@@ -50,6 +50,12 @@ router.get(
   adminController.getDashboardStats
 );
 
+router.get(
+  "/analytics",
+  auth(Role.ADMIN),
+  adminController.getAnalytics
+);
+
 router.delete(
   "/gears/:id",
   auth(Role.ADMIN),

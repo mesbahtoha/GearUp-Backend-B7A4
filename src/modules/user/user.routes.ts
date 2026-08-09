@@ -4,6 +4,8 @@ import { Role } from "../../../generated/prisma/enums";
 
 import { userController } from "./user.controller";
 import { auth } from "../../middlewares/auth";
+import { validate } from "../../middlewares/validate";
+import { registerSchema, updateProfileSchema } from "../../validations/auth.validation";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -11,6 +13,7 @@ const router = Router();
 
 router.post(
   "/register",
+  validate(registerSchema),
   userController.registerUser
 );
 
@@ -31,6 +34,7 @@ router.put(
     Role.CUSTOMER,
     Role.PROVIDER
   ),
+  validate(updateProfileSchema),
   userController.updateMyProfile
 );
 

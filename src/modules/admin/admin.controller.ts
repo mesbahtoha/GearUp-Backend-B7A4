@@ -122,6 +122,20 @@ const getDashboardStats =
     });
   });
 
+const getAnalytics =
+  catchAsync(async (req, res) => {
+
+    const result =
+      await adminService.getAnalyticsFromDB();
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "Analytics retrieved successfully",
+      data: result,
+    });
+  });
+
 const deleteGear =
   catchAsync(async (req, res) => {
 
@@ -178,6 +192,7 @@ export const adminController = {
   getAllRentals,
   getAllPayments,
   getDashboardStats,
+  getAnalytics,
   deleteGear,
   toggleGearAvailability,
   changeUserRole,

@@ -5,12 +5,15 @@ import { auth } from "../../middlewares/auth";
 import { Role } from "../../../generated/prisma/enums";
 
 import { reviewController } from "./review.controller";
+import { validate } from "../../middlewares/validate";
+import { createReviewSchema, updateReviewSchema } from "../../validations/review.validation";
 
 const router = Router();
 
 router.post(
   "/",
   auth(Role.CUSTOMER),
+  validate(createReviewSchema),
   reviewController.createReview
 );
 
@@ -40,6 +43,7 @@ router.get(
 router.patch(
   "/:id",
   auth(Role.CUSTOMER),
+  validate(updateReviewSchema),
   reviewController.updateReview
 );
 

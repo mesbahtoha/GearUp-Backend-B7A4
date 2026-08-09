@@ -1,31 +1,33 @@
-﻿import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma";
 import { ICreateGear, IGetAllGearQuery, IUpdateGear } from "./gear.interface";
 import { RentalStatus } from "../../../generated/prisma/enums";
 import { getPagination, getPaginationMeta } from "../../utils/pagination";
+import { AppError } from "../../utils/AppError";
+import httpStatus from "http-status-codes";
 
 const createGearIntoDB = async (providerId: string, payload: ICreateGear) => {
   if (!payload.name?.trim()) {
-    throw new Error("Gear name is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Gear name is required");
   }
 
   if (!payload.description?.trim()) {
-    throw new Error("Description is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Description is required");
   }
 
   if (!payload.brand?.trim()) {
-    throw new Error("Brand is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Brand is required");
   }
 
   if (!payload.categoryId) {
-    throw new Error("Category is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Category is required");
   }
 
   if (payload.pricePerDay <= 0) {
-    throw new Error("Price per day must be greater than 0");
+    throw new AppError(httpStatus.BAD_REQUEST, "Price per day must be greater than 0");
   }
 
   if (payload.stock < 0) {
-    throw new Error("Stock cannot be negative");
+    throw new AppError(httpStatus.BAD_REQUEST, "Stock cannot be negative");
   }
 
   const category = await prisma.category.findUnique({
@@ -35,7 +37,7 @@ const createGearIntoDB = async (providerId: string, payload: ICreateGear) => {
   });
 
   if (!category) {
-    throw new Error("Category not found");
+    throw new AppError(httpStatus.BAD_REQUEST, "Category not found");
   }
 
   const gear = await prisma.gearItem.create({
@@ -212,11 +214,11 @@ const updateGearIntoDB = async (
   payload: IUpdateGear,
 ) => {
   if (payload.pricePerDay !== undefined && payload.pricePerDay <= 0) {
-    throw new Error("Price must be greater than 0");
+    throw new AppError(httpStatus.BAD_REQUEST, "Price must be greater than 0");
   }
 
   if (payload.stock !== undefined && payload.stock < 0) {
-    throw new Error("Stock cannot be negative");
+    throw new AppError(httpStatus.BAD_REQUEST, "Stock cannot be negative");
   }
 
   const gear = await prisma.gearItem.findUniqueOrThrow({
@@ -226,7 +228,7 @@ const updateGearIntoDB = async (
   });
 
   if (gear.providerId !== providerId) {
-    throw new Error("You can update only your own gear");
+    throw new AppError(httpStatus.BAD_REQUEST, "You can update only your own gear");
   }
 
   const updatedGear = await prisma.gearItem.update({
@@ -246,7 +248,7 @@ const deleteGearFromDB = async (gearId: string, providerId: string) => {
   });
 
   if (gear.providerId !== providerId) {
-    throw new Error("You can delete only your own gear");
+    throw new AppError(httpStatus.BAD_REQUEST, "You can delete only your own gear");
   }
 
   const activeRentals = await prisma.rentalOrder.findFirst({
@@ -259,7 +261,7 @@ const deleteGearFromDB = async (gearId: string, providerId: string) => {
   });
 
   if (activeRentals) {
-    throw new Error("Cannot delete gear with active rentals");
+    throw new AppError(httpStatus.BAD_REQUEST, "Cannot delete gear with active rentals");
   }
 
   await prisma.$transaction(async (tx) => {

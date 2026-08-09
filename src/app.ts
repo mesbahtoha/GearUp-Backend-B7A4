@@ -28,7 +28,7 @@ const app: Application = express();
 
 app.use(
   cors({
-    origin: config.app_url,
+    origin: [config.app_url, "http://localhost:3000"],
     credentials: true,
   })
 );
@@ -74,6 +74,24 @@ app.get(
     res.send(
       "Welcome to GearUp Backend!"
     );
+  }
+);
+
+app.get(
+  "/api/health",
+  async (
+    req: Request,
+    res: Response
+  ) => {
+    res.status(200).json({
+      success: true,
+      statusCode: 200,
+      message: "Server is healthy",
+      data: {
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString(),
+      },
+    });
   }
 );
 

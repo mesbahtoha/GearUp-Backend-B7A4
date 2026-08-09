@@ -1,4 +1,6 @@
-﻿import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma";
+import { AppError } from "../../utils/AppError";
+import httpStatus from "http-status-codes";
 import { ICreateReview, IUpdateReview } from "./review.interface";
 import { getPagination, getPaginationMeta } from "../../utils/pagination";
 
@@ -9,15 +11,15 @@ const createReviewIntoDB = async (
   const { gearId, rating, comment } = payload;
 
   if (!gearId) {
-    throw new Error("Gear ID is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Gear ID is required");
   }
 
   if (rating === undefined) {
-    throw new Error("Rating is required");
+    throw new AppError(httpStatus.BAD_REQUEST, "Rating is required");
   }
 
   if (rating < 1 || rating > 5) {
-    throw new Error("Rating must be between 1 and 5");
+    throw new AppError(httpStatus.BAD_REQUEST, "Rating must be between 1 and 5");
   }
 
   const rental = await prisma.rentalOrder.findFirst({
@@ -29,7 +31,7 @@ const createReviewIntoDB = async (
   });
 
   if (!rental) {
-    throw new Error("You can only review returned rentals");
+    throw new AppError(httpStatus.BAD_REQUEST, "You can only review returned rentals");
   }
 
   const existingReview = await prisma.review.findFirst({
@@ -40,7 +42,7 @@ const createReviewIntoDB = async (
   });
 
   if (existingReview) {
-    throw new Error("You already reviewed this gear");
+    throw new AppError(httpStatus.BAD_REQUEST, "You already reviewed this gear");
   }
 
   const review = await prisma.review.create({
@@ -136,7 +138,7 @@ const updateReviewIntoDB = async (
     payload.rating !== undefined &&
     (payload.rating < 1 || payload.rating > 5)
   ) {
-    throw new Error("Rating must be between 1 and 5");
+    throw new AppError(httpStatus.BAD_REQUEST, "Rating must be between 1 and 5");
   }
 
   const review = await prisma.review.findUniqueOrThrow({
@@ -146,7 +148,7 @@ const updateReviewIntoDB = async (
   });
 
   if (review.customerId !== customerId) {
-    throw new Error("You can update only your own review");
+    throw new AppError(httpStatus.BAD_REQUEST, "You can update only your own review");
   }
 
   return prisma.review.update({
@@ -170,7 +172,7 @@ const deleteReviewFromDB = async (reviewId: string, customerId: string, isAdmin 
   });
 
   if (!isAdmin && review.customerId !== customerId) {
-    throw new Error("You can delete only your own review");
+    throw new AppError(httpStatus.BAD_REQUEST, "You can delete only your own review");
   }
 
   await prisma.review.delete({

@@ -1,9 +1,10 @@
-﻿import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status-codes";
 
 import { userService } from "./user.service";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
+import { AppError } from "../../utils/AppError";
 
 const registerUser = catchAsync(
   async (req: Request, res: Response) => {
@@ -59,12 +60,12 @@ const updateMyProfile = catchAsync(
 const updateProfileImage = catchAsync(
   async (req: Request, res: Response) => {
     if (!req.file) {
-      throw new Error("No image file provided");
+      throw new AppError(httpStatus.BAD_REQUEST, "No image file provided");
     }
 
     const MAX_SIZE = 2 * 1024 * 1024;
     if (req.file.size > MAX_SIZE) {
-      throw new Error("Image must be under 2MB");
+      throw new AppError(httpStatus.BAD_REQUEST, "Image must be under 2MB");
     }
 
     const updatedProfile = await userService.updateProfileImageInDB(

@@ -5,6 +5,8 @@ import { auth } from "../../middlewares/auth";
 import { Role } from "../../../generated/prisma/enums";
 
 import { gearController } from "./gear.controller";
+import { validate } from "../../middlewares/validate";
+import { createGearSchema, updateGearSchema } from "../../validations/gear.validation";
 
 const router = Router();
 
@@ -27,12 +29,14 @@ router.get(
 router.post(
   "/",
   auth(Role.PROVIDER),
+  validate(createGearSchema),
   gearController.createGear
 );
 
 router.patch(
   "/:id",
   auth(Role.PROVIDER),
+  validate(updateGearSchema),
   gearController.updateGear
 );
 

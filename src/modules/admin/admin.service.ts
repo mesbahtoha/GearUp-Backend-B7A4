@@ -1,4 +1,6 @@
 import { prisma } from "../../lib/prisma";
+import { AppError } from "../../utils/AppError";
+import httpStatus from "http-status-codes";
 
 const getAllUsersFromDB = async (
   query: any
@@ -94,7 +96,7 @@ const suspendUserIntoDB = async (
 ) => {
 
   if (adminId === userId) {
-    throw new Error(
+    throw new AppError(httpStatus.BAD_REQUEST, 
       "You cannot suspend yourself"
     );
   }
@@ -107,7 +109,7 @@ const suspendUserIntoDB = async (
     });
 
   if (user.role === "ADMIN") {
-    throw new Error(
+    throw new AppError(httpStatus.BAD_REQUEST, 
       "Admin account cannot be suspended"
     );
   }
@@ -383,6 +385,77 @@ const toggleGearAvailabilityIntoDB = async (
   });
 };
 
+const getAnalyticsFromDB = async () => {
+  const [rentalStatusBreakdown, userRoleBreakdown, gearByCategory, payments, monthlyRentals] =
+    await Promise.all([
+      prisma.rentalOrder.groupBy({
+        by: ["status"],
+        _count: { id: true },
+      }),
+      prisma.user.groupBy({
+        by: ["role"],
+        _count: { id: true },
+      }),
+      prisma.gearItem.groupBy({
+        by: ["categoryId"],
+        _count: { id: true },
+        _sum: { pricePerDay: true },
+      }),
+      prisma.payment.findMany({
+        where: { status: "COMPLETED" },
+        select: { amount: true, paidAt: true },
+      }),
+      prisma.rentalOrder.findMany({
+        select: { createdAt: true },
+      }),
+    ]);
+
+  const categoryNames = await prisma.category.findMany({
+    select: { id: true, name: true },
+  });
+  const categoryMap = new Map(categoryNames.map((c) => [c.id, c.name]));
+
+  const months = Array.from({ length: 6 }, (_, i) => {
+    const d = new Date();
+    d.setMonth(d.getMonth() - (5 - i));
+    return d.toISOString().slice(0, 7);
+  });
+
+  const monthlyRevenue = months.map((month) => ({
+    month,
+    revenue: payments
+      .filter((p) => p.paidAt && p.paidAt.toISOString().slice(0, 7) === month)
+      .reduce((sum, p) => sum + p.amount, 0),
+  }));
+
+  const monthlyRentalCount = months.map((month) => ({
+    month,
+    count: rentalsForMonth(monthlyRentals, month),
+  }));
+
+  return {
+    rentalStatusBreakdown: rentalStatusBreakdown.map((r) => ({
+      status: r.status,
+      count: r._count.id,
+    })),
+    userRoleBreakdown: userRoleBreakdown.map((r) => ({
+      role: r.role,
+      count: r._count.id,
+    })),
+    gearByCategory: gearByCategory.map((g) => ({
+      category: categoryMap.get(g.categoryId) || "Uncategorized",
+      count: g._count.id,
+    })),
+    monthlyRevenue,
+    monthlyRentalCount,
+  };
+};
+
+const rentalsForMonth = (
+  rentals: { createdAt: Date }[],
+  month: string,
+) => rentals.filter((r) => r.createdAt.toISOString().slice(0, 7) === month).length;
+
 const changeUserRoleIntoDB = async (
   userId: string,
   role: "CUSTOMER" | "PROVIDER" | "ADMIN"
@@ -411,6 +484,7 @@ export const adminService = {
   getAllRentalsFromDB,
   getAllPaymentsFromDB,
   getDashboardStatsFromDB,
+  getAnalyticsFromDB,
   deleteGearFromDB,
   toggleGearAvailabilityIntoDB,
   changeUserRoleIntoDB,

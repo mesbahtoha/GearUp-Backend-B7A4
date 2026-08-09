@@ -35,6 +35,8 @@ const getMyRentals = catchAsync(async (req: Request, res: Response) => {
 const getSingleRental = catchAsync(async (req: Request, res: Response) => {
   const rental = await rentalService.getSingleRentalFromDB(
     req.params.id as string,
+    req.user!.id,
+    req.user!.role,
   );
 
   sendResponse(res, {
@@ -144,50 +146,55 @@ const getProviderOrders = catchAsync(async (req, res) => {
 });
 
 const confirmOrder = catchAsync(async (req, res) => {
-  const result = await rentalService.confirmOrderIntoDB(
+  const result = await rentalService.confirmRentalIntoDB(
     req.params.id as string,
+    req.user!.id,
   );
 
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     message: "Order confirmed successfully",
     data: result,
   });
 });
 
 const cancelOrder = catchAsync(async (req, res) => {
-  const result = await rentalService.cancelOrderIntoDB(req.params.id as string);
+  const result = req.user!.role === "PROVIDER"
+    ? await rentalService.cancelOrderByProviderIntoDB(req.params.id as string, req.user!.id)
+    : await rentalService.cancelRentalIntoDB(req.params.id as string, req.user!.id);
 
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     message: "Order cancelled successfully",
     data: result,
   });
 });
 
 const markPickedUp = catchAsync(async (req, res) => {
-  const result = await rentalService.markPickedUpIntoDB(
+  const result = await rentalService.pickupRentalIntoDB(
     req.params.id as string,
+    req.user!.id,
   );
 
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     message: "Gear handed over successfully",
     data: result,
   });
 });
 
 const markReturned = catchAsync(async (req, res) => {
-  const result = await rentalService.markReturnedIntoDB(
+  const result = await rentalService.returnRentalIntoDB(
     req.params.id as string,
+    req.user!.id,
   );
 
   sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     message: "Gear returned successfully",
     data: result,
   });

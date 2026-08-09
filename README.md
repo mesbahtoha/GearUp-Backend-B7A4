@@ -1,26 +1,30 @@
-# 🚀 GearUp Backend API
+# GearUp Backend API
 
 GearUp is a backend API for a Sports & Outdoor Equipment Rental Platform where customers can rent equipment, providers can manage inventory, and administrators can oversee the entire platform.
 
 ---
 
-## 🌐 Live API
+## Live API
 
 Production Server:
 
 https://gearup-backend-b7a4.onrender.com
 
----
-
-# 🎥 Video Explanation
-
-Project Walkthrough:
-
-https://drive.google.com/file/d/1YpPP2p0qLrMqJxGvXj3K9LF_XAK1yguf/view?usp=sharing
+Health Check: `GET /api/health`
 
 ---
 
-## 🎯 Project Overview
+## Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | admin@gearup.com | admin123 |
+| **Provider** | provider@gearup.com | provider123 |
+| **Customer** | customer@gearup.com | customer123 |
+
+---
+
+## Project Overview
 
 GearUp allows users to:
 
@@ -31,18 +35,18 @@ GearUp allows users to:
 - Manage equipment inventory
 - Track rental orders
 - Manage users and platform activities through an Admin Panel
+- Sign in with **Google OAuth**
 
 ---
 
-## 👥 User Roles
+## User Roles
 
 ### Admin
 - Manage categories
-- Manage users
-- View platform analytics
+- Manage users (suspend/activate, change roles)
+- View platform statistics & **analytics** (monthly revenue, rentals per month, rentals by status, gear by category)
 - Manage rentals
 - Manage payments
-- Suspend or activate users
 - Delete gears
 
 ### Provider
@@ -52,17 +56,19 @@ GearUp allows users to:
 - View rental orders
 - Confirm rentals
 - Mark pickups and returns
+- Cancel orders
 
 ### Customer
 - Browse gears
 - Create rentals
 - Make payments
 - View rental history
+- Cancel orders
 - Submit reviews
 
 ---
 
-# 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - Node.js
@@ -77,6 +83,10 @@ GearUp allows users to:
 
 ### Authentication
 - JWT (Access Token & Refresh Token)
+- Google OAuth 2.0
+
+### Validation
+- Zod (request validation middleware)
 
 ### Payment Gateway
 - Stripe
@@ -88,45 +98,45 @@ GearUp allows users to:
 - dotenv
 - http-status
 - jsonwebtoken
+- multer
 
 ---
 
-# 📂 Project Structure
+## Project Structure
 
 ```bash
 src/
-│
-├── config/
-├── lib/
-├── middlewares/
+├── config/            # Env config (JWT, Google OAuth, Stripe keys)
+├── lib/               # Prisma client
+├── middlewares/       # Auth, role guards, error handler, validate, upload
 ├── modules/
-│   ├── auth/
-│   ├── user/
-│   ├── category/
-│   ├── gear/
-│   ├── rental/
-│   ├── payment/
-│   ├── review/
-│   ├── admin/
-│   └── dashboard/
-│
+│   ├── auth/          # Login, register, refresh token, change password, Google OAuth
+│   ├── user/          # Profile management
+│   ├── category/      # Category CRUD
+│   ├── gear/          # Gear CRUD, image upload
+│   ├── rental/        # Rental lifecycle (confirm, pickup, return, cancel)
+│   ├── payment/       # Stripe checkout & webhook
+│   ├── review/        # Reviews
+│   ├── admin/         # Dashboard, analytics, user/gear/category management
+│   └── dashboard/     # Role-based dashboard stats
 ├── utils/
+├── validations/       # Zod schemas (auth, gear, rental, review, category)
 ├── app.ts
-└── server.ts
+└── server.ts          # Entry with graceful shutdown
 ```
 
 ---
 
-# ⚙️ Installation
+## Installation
 
-## Clone Repository
+### Clone Repository
 
 ```bash
 git clone <repository-url>
 cd gearup-backend
 ```
 
-## Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
@@ -134,9 +144,9 @@ npm install
 
 ---
 
-# 🔑 Environment Variables
+## Environment Variables
 
-Create a `.env` file in the root directory.
+Create a `.env` file in the root directory (see `.env.example`):
 
 ```env
 DATABASE_URL=YOUR_DATABASE_URL
@@ -157,11 +167,15 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_PUBLISHABLE_KEY=your_publishable_key
 
 STRIPE_WEBHOOK_SECRET=your_webhook_secret
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URI=http://localhost:5000/api/auth/google/callback
 ```
 
 ---
 
-# 🗄️ Database Setup
+## Database Setup
 
 Generate Prisma Client:
 
@@ -183,7 +197,7 @@ npm run prisma db seed
 
 ---
 
-# ▶️ Run Project
+## Run Project
 
 Development:
 
@@ -205,7 +219,7 @@ npm start
 
 ---
 
-# 🔐 Authentication
+## Authentication
 
 The API uses JWT Authentication.
 
@@ -215,258 +229,101 @@ Protected Routes require:
 Authorization: Bearer ACCESS_TOKEN
 ```
 
----
+### Google OAuth
 
-# 👨‍💻 Admin Credentials
-
-```json
-{
-  "email": "admin@gmail.com",
-  "password": "admin123"
-}
+```http
+GET /api/auth/google
+GET /api/auth/google/callback
 ```
 
 ---
 
-# 📌 API Endpoints
-
-## Authentication
-
-### Login
-
-```http
-POST /api/auth/login
-```
-
-### Refresh Token
-
-```http
-POST /api/auth/refresh-token
-```
-
-### Change Password
-
-```http
-POST /api/auth/change-password
-```
-
----
-
-## Users
-
-### Register User
-
-```http
-POST /api/users/register
-```
-
-### Get Profile
-
-```http
-GET /api/users/profile
-```
-
-### Update Profile
-
-```http
-PATCH /api/users/profile
-```
-
----
-
-## Categories
-
-### Create Category
-
-```http
-POST /api/categories
-```
-
-### Get Categories
-
-```http
-GET /api/categories
-```
-
-### Update Category
-
-```http
-PATCH /api/categories/:id
-```
-
-### Delete Category
-
-```http
-DELETE /api/categories/:id
-```
-
----
-
-## Gears
-
-### Create Gear
-
-```http
-POST /api/gears
-```
-
-### Get All Gears
-
-```http
-GET /api/gears
-```
-
-### Get Single Gear
-
-```http
-GET /api/gears/:id
-```
-
-### Update Gear
-
-```http
-PATCH /api/gears/:id
-```
-
-### Delete Gear
-
-```http
-DELETE /api/gears/:id
-```
-
-### Provider Gears
-
-```http
-GET /api/gears/my-gears
-```
-
----
-
-## Rentals
-
-### Create Rental
-
-```http
-POST /api/rentals
-```
-
-### Customer Rentals
-
-```http
-GET /api/rentals/my-rentals
-```
-
-### Provider Orders
-
-```http
-GET /api/rentals/provider-orders
-```
-
-### Confirm Rental
-
-```http
-PATCH /api/rentals/:id/confirm
-```
-
-### Pickup Rental
-
-```http
-PATCH /api/rentals/:id/pickup
-```
-
-### Return Rental
-
-```http
-PATCH /api/rentals/:id/return
-```
-
----
-
-## Payments
-
-### Create Checkout Session
-
-```http
-POST /api/payments/checkout/:rentalId
-```
-
-### Stripe Webhook
-
-```http
-POST /api/webhooks/stripe
-```
-
----
-
-## Reviews
-
-### Create Review
-
-```http
-POST /api/reviews
-```
-
-### My Reviews
-
-```http
-GET /api/reviews/my-reviews
-```
-
-### Gear Reviews
-
-```http
-GET /api/reviews/gear/:gearId
-```
-
----
-
-## Admin
-
-### Dashboard
-
-```http
-GET /api/admin/dashboard
-```
+## API Endpoints
+
+### Authentication
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/login` | Login with email & password |
+| POST | `/api/auth/refresh-token` | Refresh access token |
+| POST | `/api/auth/change-password` | Change password |
+| GET | `/api/auth/google` | Start Google OAuth flow |
+| GET | `/api/auth/google/callback` | Google OAuth callback |
+| GET | `/api/health` | Health check |
 
 ### Users
 
-```http
-GET /api/admin/users
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/users/register` | Register user |
+| GET | `/api/users/profile` | Get profile |
+| PATCH | `/api/users/profile` | Update profile |
+
+### Categories
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/categories` | Create category (admin) |
+| GET | `/api/categories` | Get categories |
+| PATCH | `/api/categories/:id` | Update category (admin) |
+| DELETE | `/api/categories/:id` | Delete category (admin) |
+
+### Gears
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/gears` | Create gear (provider) |
+| GET | `/api/gears` | Get all gears |
+| GET | `/api/gears/:id` | Get single gear |
+| PATCH | `/api/gears/:id` | Update gear (provider) |
+| DELETE | `/api/gears/:id` | Delete gear |
+| GET | `/api/gears/my-gears` | Provider gears |
+| POST | `/api/gears/upload` | Upload gear image (auth, 2MB limit) |
 
 ### Rentals
 
-```http
-GET /api/admin/rentals
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/rentals` | Create rental |
+| GET | `/api/rentals/my-rentals` | Customer rentals |
+| GET | `/api/rentals/provider-orders` | Provider orders |
+| GET | `/api/rentals/:id` | Get single rental (owner/provider/admin only) |
+| PATCH | `/api/rentals/:id/confirm` | Confirm rental (provider) |
+| PATCH | `/api/rentals/:id/pickup` | Mark picked up (provider) |
+| PATCH | `/api/rentals/:id/return` | Mark returned (provider) |
+| PATCH | `/api/rentals/:id/cancel` | Cancel rental (customer/provider/admin) |
 
 ### Payments
 
-```http
-GET /api/admin/payments
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/payments/checkout/:rentalId` | Create Stripe checkout session |
+| POST | `/api/webhooks/stripe` | Stripe webhook |
 
-### Suspend User
+### Reviews
 
-```http
-PATCH /api/admin/users/:id/suspend
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/reviews` | Create review |
+| GET | `/api/reviews/my-reviews` | My reviews |
+| GET | `/api/reviews/gear/:gearId` | Gear reviews |
 
-### Activate User
+### Admin
 
-```http
-PATCH /api/admin/users/:id/activate
-```
-
-### Delete Gear
-
-```http
-DELETE /api/admin/gears/:id
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/admin/dashboard` | Platform dashboard stats |
+| GET | `/api/admin/analytics` | Charts data (revenue, rentals, statuses, categories) |
+| GET | `/api/admin/users` | List users |
+| GET | `/api/admin/rentals` | List rentals |
+| GET | `/api/admin/payments` | List payments |
+| PATCH | `/api/admin/users/:id/suspend` | Suspend user |
+| PATCH | `/api/admin/users/:id/activate` | Activate user |
+| DELETE | `/api/admin/gears/:id` | Delete gear |
 
 ---
 
-# 💳 Stripe Test Card
+## Stripe Test Card
 
 Use the following test card while testing Stripe payments:
 
@@ -479,39 +336,30 @@ ZIP: Any valid ZIP
 
 ---
 
-# 📬 Postman Collection
+## Error Handling
+
+The API returns consistent error responses:
+
+```json
+{
+  "success": false,
+  "message": "Error message",
+  "errorSources": []
+}
+```
+
+Prisma errors are mapped to proper HTTP status codes (404 for not found, 409 for duplicates, 400 for constraint violations).
+
+---
+
+## Postman Collection
 
 The complete Postman Collection is included with this project submission.
 
 Postman collections: https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json
 
-Import the collection and environment file into Postman to test all endpoints.
-
 ---
 
-# ✨ Features Implemented
-
-- JWT Authentication
-- Role-Based Authorization
-- Category Management
-- Gear Management
-- Rental Management
-- Stripe Payment Integration
-- Stripe Webhook Handling
-- Review System
-- Admin Dashboard
-- User Management
-- Provider Order Management
-- Pagination
-- Search & Filtering
-- Global Error Handling
-- Secure Password Hashing
-- Prisma ORM Integration
-
----
-
-# 👨‍💻 Author
+## Author
 
 **Md. Mesbahul Alam**
-
----
