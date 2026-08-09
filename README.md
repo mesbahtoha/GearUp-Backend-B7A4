@@ -18,9 +18,9 @@ Health Check: `GET /api/health`
 
 | Role | Email | Password |
 |------|-------|----------|
-| **Admin** | admin@gearup.com | admin123 |
-| **Provider** | provider@gearup.com | provider123 |
-| **Customer** | customer@gearup.com | customer123 |
+| **Customer** | toha@gmail.com | toha123 |
+| **Provider** | provider@gmail.com | provider123 |
+| **Admin** | admin@gmail.com | admin123 |
 
 ---
 

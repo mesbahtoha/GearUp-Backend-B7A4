@@ -18,22 +18,22 @@ const SALT_ROUNDS = 10;
 
 const DEMO_USERS = [
   {
-    email: "admin@gearup.com",
+    email: "admin@gmail.com",
     password: "admin123",
     name: "System Admin",
     role: Role.ADMIN,
     phone: "01700000001",
   },
   {
-    email: "provider@gearup.com",
+    email: "provider@gmail.com",
     password: "provider123",
     name: "Alex Provider",
     role: Role.PROVIDER,
     phone: "01700000002",
   },
   {
-    email: "customer@gearup.com",
-    password: "customer123",
+    email: "toha@gmail.com",
+    password: "toha123",
     name: "Sam Customer",
     role: Role.CUSTOMER,
     phone: "01700000003",
@@ -345,9 +345,9 @@ async function main() {
   console.log("🎉 Seeding complete!");
   console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   console.log("🔑 Demo Credentials");
-  console.log("  Admin    → admin@gearup.com    / admin123");
-  console.log("  Provider → provider@gearup.com / provider123");
-  console.log("  Customer → customer@gearup.com / customer123");
+  console.log("  Admin    → admin@gmail.com    / admin123");
+  console.log("  Provider → provider@gmail.com / provider123");
+  console.log("  Customer → toha@gmail.com     / toha123");
   console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 }
 
