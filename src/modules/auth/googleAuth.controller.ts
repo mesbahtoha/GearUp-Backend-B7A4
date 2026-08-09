@@ -29,40 +29,49 @@ const redirectToGoogle = catchAsync(async (req: Request, res: Response) => {
 const googleCallback = catchAsync(async (req: Request, res: Response) => {
   const { code, state, error } = req.query;
 
-  if (error) {
-    throw new AppError(httpStatus.UNAUTHORIZED, `Google login failed: ${error}`);
+  const redirectWithError = (message: string) => {
+    const loginUrl = `${config.client_url}/auth/login?error=${encodeURIComponent(message)}`;
+    res.redirect(loginUrl);
+  };
+
+  try {
+    if (error) {
+      throw new Error(`Google login failed: ${error}`);
+    }
+
+    if (!code || !state) {
+      throw new Error("Missing Google authorization code or state");
+    }
+
+    const expectedState = req.cookies.google_oauth_state;
+    res.clearCookie("google_oauth_state");
+
+    if (!expectedState || expectedState !== state) {
+      throw new Error("Invalid OAuth state. Please try again.");
+    }
+
+    const { access_token } = await googleAuthService.exchangeCodeForTokens(String(code));
+    const profile = await googleAuthService.fetchGoogleProfile(access_token);
+
+    if (!profile.email || !profile.email_verified) {
+      throw new Error("Google account email is not verified");
+    }
+
+    const tokens = await googleAuthService.googleLoginIntoDB({
+      email: profile.email,
+      name: profile.name || "Google User",
+      picture: profile.picture,
+    });
+
+    const fragment =
+      `#accessToken=${encodeURIComponent(tokens.accessToken)}` +
+      `&refreshToken=${encodeURIComponent(tokens.refreshToken)}` +
+      `&role=${tokens.role}`;
+
+    res.redirect(`${config.client_url}/auth/oauth-callback${fragment}`);
+  } catch (err) {
+    redirectWithError(err instanceof Error ? err.message : "Google login failed");
   }
-
-  if (!code || !state) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Missing Google authorization code or state");
-  }
-
-  const expectedState = req.cookies.google_oauth_state;
-  res.clearCookie("google_oauth_state");
-
-  if (!expectedState || expectedState !== state) {
-    throw new AppError(httpStatus.FORBIDDEN, "Invalid OAuth state. Please try again.");
-  }
-
-  const { access_token } = await googleAuthService.exchangeCodeForTokens(String(code));
-  const profile = await googleAuthService.fetchGoogleProfile(access_token);
-
-  if (!profile.email || !profile.email_verified) {
-    throw new AppError(httpStatus.UNAUTHORIZED, "Google account email is not verified");
-  }
-
-  const tokens = await googleAuthService.googleLoginIntoDB({
-    email: profile.email,
-    name: profile.name || "Google User",
-    picture: profile.picture,
-  });
-
-  const fragment =
-    `#accessToken=${encodeURIComponent(tokens.accessToken)}` +
-    `&refreshToken=${encodeURIComponent(tokens.refreshToken)}` +
-    `&role=${tokens.role}`;
-
-  res.redirect(`${config.client_url}/auth/oauth-callback${fragment}`);
 });
 
 export const googleAuthController = {
