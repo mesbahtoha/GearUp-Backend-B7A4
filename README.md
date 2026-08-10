@@ -17,6 +17,32 @@ https://drive.google.com/drive/folders/1SB4AbuENTyAGG9thCvpzFmlHz8p043uW
 
 ---
 
+## 👨‍💼 Login Credentials
+
+Use the following credentials to explore the Role-wise Dashboard:
+
+**Admin Credentials**
+
+| Email             | Password   |
+| ----------------- | ---------- |
+| `admin@gmail.com` | `admin123` |
+
+**Provider Credentials**
+
+| Email             | Password   |
+| ----------------- | ---------- |
+| `provider@gmail.com` | `provider123` |
+
+**User Credentials**
+
+| Email             | Password   |
+| ----------------- | ---------- |
+| `momtaz@gmail.com` | `momtaz4321` |
+
+> ⚠️ These credentials are provided for demonstration and testing purposes.
+
+---
+
 ## 📬 Postman Collection
 
 [GearUp Backend Postman Collection](https://github.com/mesbahtoha/GearUp-Backend-B7A4/blob/main/postman/GearUp%20Backand%20Postman%20Collections.postman_collection.json)
@@ -280,21 +306,6 @@ Add the token to the request header:
 ```http
 Authorization: Bearer YOUR_ACCESS_TOKEN
 ```
-
----
-
-# 👨‍💻 Admin Credentials
-
-For testing the admin functionality:
-
-```json
-{
-  "email": "admin@gmail.com",
-  "password": "admin123"
-}
-```
-
-> ⚠️ These credentials are intended for development/testing purposes only.
 
 ---
 
