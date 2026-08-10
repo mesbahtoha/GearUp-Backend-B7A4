@@ -45,7 +45,7 @@ const registerUserIntoDB = async (payload: RegisterUserPayload) => {
       name,
       email,
       password: hashedPassword,
-      phone,
+      phone: phone?.trim() || undefined,
       role: role || "CUSTOMER",
     },
     omit: {
@@ -79,7 +79,7 @@ const updateMyProfileInDB = async (
 
   const data: Record<string, string | undefined> = {};
   if (payload.name !== undefined) data.name = payload.name;
-  if (payload.phone !== undefined) data.phone = payload.phone;
+  if (payload.phone !== undefined) data.phone = payload.phone?.trim() || undefined;
   if (payload.image !== undefined) data.image = payload.image;
 
   const updatedUser = await prisma.user.update({

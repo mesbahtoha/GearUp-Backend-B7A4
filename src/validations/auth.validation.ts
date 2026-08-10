@@ -11,7 +11,11 @@ export const registerSchema = z.object({
     .string({ message: "Password is required" })
     .min(6, "Password must be at least 6 characters")
     .max(100, "Password must be at most 100 characters"),
-  phone: z.string().min(10, "Phone must be at least 10 characters").optional(),
+  phone: z
+    .string()
+    .min(10, "Phone must be at least 10 characters")
+    .or(z.literal(""))
+    .optional(),
   role: z.enum([Role.CUSTOMER, Role.PROVIDER]).optional().default(Role.CUSTOMER),
 });
 
@@ -35,6 +39,12 @@ export const changePasswordSchema = z
 
 export const forgotPasswordSchema = z.object({
   email: z.email("Invalid email address"),
+  oldPassword: z
+    .string({ message: "Current password is required" })
+    .min(1, "Current password is required"),
+  newPassword: z
+    .string({ message: "New password is required" })
+    .min(6, "New password must be at least 6 characters"),
 });
 
 export const updateProfileSchema = z.object({
@@ -46,6 +56,7 @@ export const updateProfileSchema = z.object({
   phone: z
     .string()
     .min(10, "Phone must be at least 10 characters")
+    .or(z.literal(""))
     .optional(),
   image: z.string().url("Image must be a valid URL").optional(),
 });
