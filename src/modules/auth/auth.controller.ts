@@ -1,9 +1,15 @@
-﻿import { Request, Response } from "express";
+﻿import { Request, Response, CookieOptions } from "express";
 import httpStatus from "http-status-codes";
 
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { authService } from "./auth.service";
+
+const cookieOptions: CookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+};
 
 const loginUser = catchAsync(
   async (req: Request, res: Response) => {
@@ -13,22 +19,12 @@ const loginUser = catchAsync(
       await authService.loginUser(payload);
 
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite:
-        process.env.NODE_ENV === "production"
-          ? "none"
-          : "lax",
+      ...cookieOptions,
       maxAge: 1000 * 60 * 60 * 24,
     });
 
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite:
-        process.env.NODE_ENV === "production"
-          ? "none"
-          : "lax",
+      ...cookieOptions,
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
@@ -57,22 +53,12 @@ const refreshToken = catchAsync(
       );
 
     res.cookie("accessToken", result.accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite:
-        process.env.NODE_ENV === "production"
-          ? "none"
-          : "lax",
+      ...cookieOptions,
       maxAge: 1000 * 60 * 60 * 24,
     });
 
     res.cookie("refreshToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite:
-        process.env.NODE_ENV === "production"
-          ? "none"
-          : "lax",
+      ...cookieOptions,
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
@@ -90,11 +76,13 @@ const logout = catchAsync(
   async (req, res) => {
 
     res.clearCookie(
-      "accessToken"
+      "accessToken",
+      cookieOptions
     );
 
     res.clearCookie(
-      "refreshToken"
+      "refreshToken",
+      cookieOptions
     );
 
     sendResponse(res, {
